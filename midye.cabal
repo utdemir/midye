@@ -1,0 +1,86 @@
+cabal-version:       2.4
+
+name:                midye
+synopsis:            A terminal emulator
+version:             0.0.1.0
+homepage:            https://github.com/utdemir/midye
+license:             BSD-3-Clause
+author:              Utku Demir
+maintainer:          Utku Demir
+copyright:           Utku Demir
+category:            System
+build-type:          Simple
+
+common common-options
+  ghc-options:        -threaded
+                      -Wall -Wpartial-fields -Wincomplete-record-updates -Widentities
+                      -fno-show-valid-hole-fits
+  default-language:   Haskell2010
+  mixins:             base hiding (Prelude)
+                    , relude (Relude as Prelude)
+                    , relude
+  default-extensions: LambdaCase
+                      OverloadedStrings
+                      TupleSections
+                      TypeApplications
+                      GeneralizedNewtypeDeriving
+                      DeriveGeneric
+                      DeriveFunctor
+                      DerivingStrategies
+                      DeriveAnyClass
+                      FlexibleInstances
+                      DeriveLift
+                      StandaloneDeriving
+                      DataKinds
+                      KindSignatures
+                      NamedFieldPuns
+                      RankNTypes
+                      PackageImports
+                      ImportQualifiedPost
+                      ScopedTypeVariables
+                      NumericUnderscores
+  other-modules:      Midye.ANSI.Parser
+                      Midye.ANSI.Printer
+                      Data.Color
+                      Streaming.Attoparsec
+                      Streaming.Text
+                      Midye.Process
+                      Midye.Main
+  build-depends:      base >=4.11 && < 5
+                    , relude
+                    , async
+                    , attoparsec
+                    , bytestring
+                    , filepath
+                    , streaming
+                    , streaming-bytestring
+                    , streaming-concurrency
+                    , resourcet
+                    , text
+                    , inline-c
+                    , unix
+                    , process
+
+executable midye
+  import:             common-options
+  main-is:            Main.hs
+  hs-source-dirs:     src
+  ghc-options:        -threaded -O2
+  build-depends:      base
+
+test-suite midye-tests
+  import:             common-options
+  ghc-options:        -Wno-unused-packages -threaded
+                      -rtsopts -with-rtsopts=-N
+  type:               exitcode-stdio-1.0
+  hs-source-dirs:     test/ src/
+  main-is:            Driver.hs
+  other-modules:      Tests.Midye.ANSI.Parser
+                    , Tests.Streaming.Attoparsec
+                    , Tests.Streaming.Text
+  build-depends:      hedgehog
+                    , tasty
+                    , tasty-hedgehog
+                    , tasty-golden
+                    , tasty-discover
+                    , tasty-hunit

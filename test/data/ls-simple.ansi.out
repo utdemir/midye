@@ -1,0 +1,13 @@
+a
+TBSpecial (TSControlCharacter CC_LF)
+TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TBSpecial (TSTermSequenceCSI (TSC_SGR [1,34]))
+b
+TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TBSpecial (TSControlCharacter CC_LF)
+c
+TBSpecial (TSControlCharacter CC_LF)
+TBSpecial (TSTermSequenceCSI (TSC_SGR [40,31,1]))
+foobar
+TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TBSpecial (TSControlCharacter CC_LF)

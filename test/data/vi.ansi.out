@@ -1,0 +1,284 @@
+TBSpecial (TSControlCharacter CC_ESC)
+[?1000h
+TBSpecial (TSControlCharacter CC_ESC)
+[?1049h
+TBSpecial (TSControlCharacter CC_ESC)
+[>4;2m
+TBSpecial (TSControlCharacter CC_ESC)
+[?1h
+TBSpecial (TSControlCharacter CC_ESC)
+=
+TBSpecial (TSControlCharacter CC_ESC)
+[?2004h
+TBSpecial (TSControlCharacter CC_ESC)
+[1;12r
+TBSpecial (TSControlCharacter CC_ESC)
+[?12h
+TBSpecial (TSControlCharacter CC_ESC)
+[?12l
+TBSpecial (TSControlCharacter CC_ESC)
+[22;2t
+TBSpecial (TSControlCharacter CC_ESC)
+[22;1t
+TBSpecial (TSTermSequenceCSI (TSC_SGR [27]))
+TBSpecial (TSTermSequenceCSI (TSC_SGR [23]))
+TBSpecial (TSTermSequenceCSI (TSC_SGR [29]))
+TBSpecial (TSTermSequenceCSI (TSC_SGR []))
+TBSpecial (TSControlCharacter CC_ESC)
+[H
+TBSpecial (TSControlCharacter CC_ESC)
+[2J
+TBSpecial (TSControlCharacter CC_ESC)
+[?25l
+TBSpecial (TSControlCharacter CC_ESC)
+[2;1H
+TBSpecial (TSTermSequenceCSI (TSC_SGR [94]))
+~                                                                                                                                                                             
+TBSpecial (TSControlCharacter CC_ESC)
+[3;1H~                                                                                                                                                                             
+TBSpecial (TSControlCharacter CC_ESC)
+[4;1H~                                                                                                                                                                             
+TBSpecial (TSControlCharacter CC_ESC)
+[5;1H~                                                                                                                                                                             
+TBSpecial (TSControlCharacter CC_ESC)
+[6;1H~                                                                                                                                                                             
+TBSpecial (TSControlCharacter CC_ESC)
+[7;1H~                                                                                                                                                                             
+TBSpecial (TSControlCharacter CC_ESC)
+[8;1H~                                                                                                                                                                             
+TBSpecial (TSControlCharacter CC_ESC)
+[9;1H~                                                                                                                                                                             
+TBSpecial (TSControlCharacter CC_ESC)
+[10;1H~                                                                                                                                                                             
+TBSpecial (TSControlCharacter CC_ESC)
+[11;1H~                                                                                                                                                                             
+TBSpecial (TSTermSequenceCSI (TSC_SGR []))
+TBSpecial (TSControlCharacter CC_ESC)
+[12;157H0,0-1
+TBSpecial (TSControlCharacter CC_ESC)
+[9CAll
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_BEL)
+TBSpecial (TSControlCharacter CC_ESC)
+[?25l
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H^@
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H  
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25l
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H^M
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H  
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25l
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H^M
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H  
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25l
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147Hi
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H 
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[12;1H
+TBSpecial (TSTermSequenceCSI (TSC_SGR [1]))
+-- INSERT --
+TBSpecial (TSTermSequenceCSI (TSC_SGR []))
+TBSpecial (TSControlCharacter CC_ESC)
+[12;157H
+TBSpecial (TSControlCharacter CC_ESC)
+[K
+TBSpecial (TSControlCharacter CC_ESC)
+[12;157H0,1
+TBSpecial (TSControlCharacter CC_ESC)
+[11CAll
+TBSpecial (TSControlCharacter CC_ESC)
+[1;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25ld
+TBSpecial (TSControlCharacter CC_ESC)
+[12;157H1,2
+TBSpecial (TSControlCharacter CC_ESC)
+[1;2H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25lo
+TBSpecial (TSControlCharacter CC_ESC)
+[12;159H3
+TBSpecial (TSControlCharacter CC_ESC)
+[1;3H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25li
+TBSpecial (TSControlCharacter CC_ESC)
+[12;159H4
+TBSpecial (TSControlCharacter CC_ESC)
+[1;4H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25ln
+TBSpecial (TSControlCharacter CC_ESC)
+[12;159H5
+TBSpecial (TSControlCharacter CC_ESC)
+[1;5H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25lg
+TBSpecial (TSControlCharacter CC_ESC)
+[12;159H6
+TBSpecial (TSControlCharacter CC_ESC)
+[1;6H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25l
+TBSpecial (TSControlCharacter CC_ESC)
+[12;159H7
+TBSpecial (TSControlCharacter CC_ESC)
+[1;7H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25ls
+TBSpecial (TSControlCharacter CC_ESC)
+[12;159H8
+TBSpecial (TSControlCharacter CC_ESC)
+[1;8H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25lt
+TBSpecial (TSControlCharacter CC_ESC)
+[12;159H9
+TBSpecial (TSControlCharacter CC_ESC)
+[1;9H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25lu
+TBSpecial (TSControlCharacter CC_ESC)
+[12;159H10
+TBSpecial (TSControlCharacter CC_ESC)
+[1;10H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25lf
+TBSpecial (TSControlCharacter CC_ESC)
+[12;160H1
+TBSpecial (TSControlCharacter CC_ESC)
+[1;11H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25lf
+TBSpecial (TSControlCharacter CC_ESC)
+[12;160H2
+TBSpecial (TSControlCharacter CC_ESC)
+[1;12H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[12;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[K
+TBSpecial (TSControlCharacter CC_ESC)
+[1;11H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25l
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H^[
+TBSpecial (TSControlCharacter CC_ESC)
+[1;11H
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H  
+TBSpecial (TSControlCharacter CC_ESC)
+[1;12H
+TBSpecial (TSControlCharacter CC_ESC)
+[12;157H1,11
+TBSpecial (TSControlCharacter CC_ESC)
+[10CAll
+TBSpecial (TSControlCharacter CC_ESC)
+[1;11H
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[?25l
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H:
+TBSpecial (TSControlCharacter CC_ESC)
+[1;11H
+TBSpecial (TSControlCharacter CC_ESC)
+[12;147H
+TBSpecial (TSControlCharacter CC_ESC)
+[K
+TBSpecial (TSControlCharacter CC_ESC)
+[12;1H:
+TBSpecial (TSControlCharacter CC_ESC)
+[?25hq!
+TBSpecial (TSControlCharacter CC_CR)
+TBSpecial (TSControlCharacter CC_ESC)
+[?25l
+TBSpecial (TSControlCharacter CC_ESC)
+[?1000l
+TBSpecial (TSControlCharacter CC_ESC)
+[?2004l
+TBSpecial (TSControlCharacter CC_ESC)
+[>4;m
+TBSpecial (TSControlCharacter CC_ESC)
+[23;2t
+TBSpecial (TSControlCharacter CC_ESC)
+[23;1t
+TBSpecial (TSControlCharacter CC_ESC)
+[12;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[K
+TBSpecial (TSControlCharacter CC_ESC)
+[12;1H
+TBSpecial (TSControlCharacter CC_ESC)
+[?2004l
+TBSpecial (TSControlCharacter CC_ESC)
+[?1l
+TBSpecial (TSControlCharacter CC_ESC)
+>
+TBSpecial (TSControlCharacter CC_ESC)
+[?25h
+TBSpecial (TSControlCharacter CC_ESC)
+[>4;m
+TBSpecial (TSControlCharacter CC_ESC)
+[?1049l
