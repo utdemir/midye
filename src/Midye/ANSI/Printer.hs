@@ -24,7 +24,7 @@ where
 
 import "this" Data.Color
 import Data.Sequence qualified as Seq
-import "this" Midye.ANSI.Parser (ControlCharacter (..), TermBytes (..), TermSpecial (..))
+import "this" Midye.ANSI.Parser (TermBytes (..), TermSpecial (..))
 import "optics-th" Optics.TH qualified
 
 data Style = Style
@@ -96,16 +96,16 @@ run (TBPlain c) scr =
    in scr
         & vtyCellsBefore %~ (|> cell)
         & wrapCurrentRow
-run (TBSpecial (TSControlCharacter CC_CR)) scr =
+run (TBSpecial (TS_CR)) scr =
   scr
     & vtyCellsBefore .~ Seq.empty
     & vtyCellsAfter %~ (scr ^. vtyCellsBefore Seq.><)
-run (TBSpecial (TSControlCharacter CC_LF)) scr =
+run (TBSpecial (TS_LF)) scr =
   scr
     & vtyRowsAbove %~ cons (scr ^. vtyCellsBefore <> scr ^. vtyCellsAfter)
     & vtyCellsBefore .~ Seq.empty
     & vtyCellsAfter .~ Seq.empty
-run (TBSpecial (TSControlCharacter CC_HT)) scr =
+run (TBSpecial (TS_HT)) scr =
   let currCol = Seq.length (scr ^. vtyCellsBefore)
       requiredSpaces = 8 - currCol `mod` 8
    in scr

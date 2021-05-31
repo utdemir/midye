@@ -4,7 +4,7 @@
 
 * Linux console escape and control sequences: https://man7.org/linux/man-pages/man4/console_codes.4.html
 * Summary of ANSI standards for ASCII terminals: https://www.inwap.com/pdp10/ansicode.txt
-
+* hTerm control sequences: https://chromium.googlesource.com/apps/libapps/+/a5fb83c190aa9d74f4a9bca233dac6be2664e9e9/hterm/doc/ControlSequences.md
 ## Ideas
 
 * Onceki komutlarin stderr ve stdout'larini sonraki komutlarda kullanabileyim
