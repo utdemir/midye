@@ -14,7 +14,7 @@ import "inline-c" Language.C.Inline qualified as C
 import "streaming-bytestring" Streaming.ByteString (ByteStream)
 import "streaming-bytestring" Streaming.ByteString qualified as StreamingBS
 import System.Exit (ExitCode (..))
-import System.IO (BufferMode (NoBuffering), hSetBuffering)
+import System.IO (BufferMode (NoBuffering), hSetBuffering, hClose, hFlush)
 import "unix" System.Posix.IO (fdToHandle)
 import System.Posix.Types (Fd (..))
 import "process" System.Process qualified as Process
@@ -31,6 +31,7 @@ execWithPty ::
     ( ByteStream IO (),
       ByteStream IO (),
       ByteStream IO () -> IO (),
+      IO (),
       Process.ProcessHandle
     )
 execWithPty fp args = do
@@ -44,11 +45,18 @@ execWithPty fp args = do
             Process.std_err = Process.UseHandle stderrMaster,
             Process.std_in = Process.UseHandle stdinMaster
           }
-  (_, _, _, processHandle) <- Process.createProcess p
+  (_, _, _, processHandle) <- Process.createProcess_ fp p
+
+  let closeHandles = do
+        mapM_
+          (\f -> hFlush f >> hClose f)
+          [stdoutMaster, stderrMaster, stdinMaster]
+
   return
     ( StreamingBS.hGetContents stdoutSlave,
       StreamingBS.hGetContents stderrSlave,
       StreamingBS.toHandle stdinSlave,
+      closeHandles,
       processHandle
     )
 

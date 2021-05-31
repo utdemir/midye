@@ -17,8 +17,6 @@ common common-options
                       -fno-show-valid-hole-fits
   default-language:   Haskell2010
   mixins:             base hiding (Prelude)
-                    , relude (Relude as Prelude)
-                    , relude
   default-extensions: LambdaCase
                       OverloadedStrings
                       TupleSections
@@ -30,15 +28,21 @@ common common-options
                       DeriveAnyClass
                       FlexibleInstances
                       DeriveLift
+                      MultiWayIf
                       StandaloneDeriving
                       DataKinds
                       KindSignatures
                       NamedFieldPuns
                       RankNTypes
+                      DuplicateRecordFields
                       PackageImports
                       ImportQualifiedPost
                       ScopedTypeVariables
                       NumericUnderscores
+                      NamedFieldPuns
+                      OverloadedLabels
+                      MultiParamTypeClasses
+                      TypeFamilies
   other-modules:      Midye.ANSI.Parser
                       Midye.ANSI.Printer
                       Data.Color
@@ -46,6 +50,8 @@ common common-options
                       Streaming.Text
                       Midye.Process
                       Midye.Main
+                      Midye.Render
+                      Prelude
   build-depends:      base >=4.11 && < 5
                     , relude
                     , async
@@ -60,6 +66,13 @@ common common-options
                     , inline-c
                     , unix
                     , process
+                    , vector
+                    , containers
+                    , hint
+                    , optics >= 0.4
+                    , terminal-size
+                    , clock
+                    , human-readable-duration
 
 executable midye
   import:             common-options

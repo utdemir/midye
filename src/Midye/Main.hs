@@ -4,11 +4,16 @@ module Midye.Main
 where
 
 import Control.Concurrent.Async
+import Control.Concurrent.MVar (modifyMVar_)
 import Midye.ANSI.Parser qualified as ANSI.Parser
+import Midye.ANSI.Printer qualified as ANSI.Printer
 import Midye.Process
+import Midye.Render qualified
 import Streaming.ByteString qualified as StreamingBS
 import Streaming.Prelude qualified as Streaming
 import System.IO qualified as IO
+import System.Clock qualified as Clock
+import Data.Duration qualified
 
 main :: IO ()
 main = do
@@ -32,23 +37,23 @@ repl = do
 
 runCommand :: Text -> IO ()
 runCommand cmd = do
-  (stdoutS, stderrS, stdinS, process) <- execWithPty "zsh" ["-c", toString cmd]
+  startTime <- Clock.getTime Clock.MonotonicRaw
 
-  outVar <- newEmptyMVar @_ @(Text, ANSI.Parser.TermBytes)
+  (stdoutS, stderrS, stdinS, closeHandles, process) <- execWithPty "bash" ["-c", toString cmd]
+
+  stdoutVar <- newMVar $ ANSI.Printer.initVTY (160, 20)
+  stderrVar <- newMVar $ ANSI.Printer.initVTY (160, 20)
+
   t1 <-
     async $
       stdoutS
         & ANSI.Parser.run
-        & Streaming.mapM_ (\v -> putMVar outVar ("out", v))
+        & Streaming.mapM_ (\tb -> modifyMVar_ stdoutVar (return . ANSI.Printer.run tb))
   t2 <-
     async $
       stderrS
         & ANSI.Parser.run
-        & Streaming.mapM_ (\v -> putMVar outVar ("err", v))
-
-  t3 <- async . forever $ do
-    v <- takeMVar outVar
-    print v
+        & Streaming.mapM_ (\tb -> modifyMVar_ stderrVar (return . ANSI.Printer.run tb))
 
   inVar <- newEmptyMVar @_ @Char
   t4 <-
@@ -62,11 +67,24 @@ runCommand cmd = do
         & StreamingBS.fromChunks
         & stdinS
 
-  wait t1
-  wait t2
   exitCode <- waitForProcess process
-  cancel t3
-  cancel t4
-  cancel t5
+  closeHandles
+
+  mapM_ wait [t1, t2]
+  endTime <- Clock.getTime Clock.MonotonicRaw
+
+  mapM_ cancel [t4, t5]
+
+  putStrLn "stdout:"
+  outscr <- readMVar stdoutVar
+  Midye.Render.render outscr
+
+  putStrLn "stderr:"
+  errscr <- readMVar stderrVar
+  Midye.Render.render errscr
+
+  let took = Clock.toNanoSecs $ Clock.diffTimeSpec endTime startTime
+  let tookHuman = Data.Duration.approximativeDuration (fromIntegral @Integer @Data.Duration.Seconds took / 1_000_000_000)
+  putStrLn $ mconcat [ "Took: ", tookHuman, "."]
 
   print exitCode

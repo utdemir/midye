@@ -2,7 +2,6 @@ module Streaming.Attoparsec where
 
 import "attoparsec" Data.Attoparsec.Types
 import "streaming" Streaming (Of, Stream)
-import "streaming" Streaming qualified
 import "streaming" Streaming.Prelude qualified as Streaming
 
 -- | Repeatedly run an attoparsec parser through stream elements. Any failed parse aborts the stream.

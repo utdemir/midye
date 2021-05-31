@@ -15,6 +15,10 @@ let
           { };
       "streaming-with" =
         pkgs.haskell.lib.doJailbreak hsuper."streaming-with";
+      "optics" = hself.optics_0_4;
+      "optics-core" = hself.optics-core_0_4;
+      "optics-extra" = hself.optics-extra_0_4;
+      "optics-th" = hself.optics-th_0_4;
     };
   };
 

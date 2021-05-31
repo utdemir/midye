@@ -1,298 +1,299 @@
 ┌────────┬─────────────────────────┬─────────────────────────┬────────┬────────┐
-TBSpecial (TSControlCharacter CC_LF)
+TSControlCharacter CC_LF
 │
-TBSpecial (TSTermSequenceCSI (TSC_SGR [38,5,242]))
+TSTermSequenceCSI (TSC_SGR [38,5,242])
 00000000
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 │ 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 61 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [32]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [32])
 0a 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 1b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 5b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 30 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 6d 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 1b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 5b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 ┊ 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 30 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 31 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 3b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 33 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 34 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 6d 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 62 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 1b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 │
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 a
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [32]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [32])
 _
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 •
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 [
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 0
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 m
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 •
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 [
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 ┊
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 0
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 1
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 ;
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 3
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 4
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 m
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 b
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 •
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 │
-TBSpecial (TSControlCharacter CC_LF)
+TSControlCharacter CC_LF
 │
-TBSpecial (TSTermSequenceCSI (TSC_SGR [38,5,242]))
+TSTermSequenceCSI (TSC_SGR [38,5,242])
 00000010
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 │ 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 5b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 30 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 6d 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [32]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [32])
 0a 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 63 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [32]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [32])
 0a 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 1b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 5b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 ┊ 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 34 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 30 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 3b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 33 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 31 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 3b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 30 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 31 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 │
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 [
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 0
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 m
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [32]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [32])
 _
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 c
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [32]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [32])
 _
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 •
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 [
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 ┊
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 4
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 0
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 ;
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 3
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 1
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 ;
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 0
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 1
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 │
-TBSpecial (TSControlCharacter CC_LF)
+TSControlCharacter CC_LF
 │
-TBSpecial (TSTermSequenceCSI (TSC_SGR [38,5,242]))
+TSTermSequenceCSI (TSC_SGR [38,5,242])
 00000020
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 │ 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 6d 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 66 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 6f 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 6f 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 62 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 61 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 72 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 1b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 ┊ 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 5b 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 30 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 6d 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [32]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [32])
 0a 
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
             │
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 m
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 f
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 o
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 o
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 b
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 a
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 r
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [35]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [35])
 •
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
 ┊
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [36])
 [
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 0
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [36]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [36])
 m
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
-TBSpecial (TSTermSequenceCSI (TSC_SGR [32]))
+TSTermSequenceCSI (TSC_SGR [0])
+TSTermSequenceCSI (TSC_SGR [32])
 _
-TBSpecial (TSTermSequenceCSI (TSC_SGR [0]))
+TSTermSequenceCSI (TSC_SGR [0])
     │
-TBSpecial (TSControlCharacter CC_LF)
+TSControlCharacter CC_LF
 └────────┴─────────────────────────┴─────────────────────────┴────────┴────────┘
-TBSpecial (TSControlCharacter CC_LF)
+TSControlCharacter CC_LF
+

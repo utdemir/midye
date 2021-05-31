@@ -1,8 +1,7 @@
 module Tests.Midye.ANSI.Parser where
 
 import "resourcet" Control.Monad.Trans.Resource
-import Data.List (span)
-import "text" Data.Text.Lazy.Builder qualified as Builder
+import "text" Data.Text qualified as Text
 import "this" Midye.ANSI.Parser qualified as Parser
 import "streaming-bytestring" Streaming.ByteString qualified as StreamingBS
 import "streaming" Streaming.Prelude qualified as Streaming
@@ -29,26 +28,10 @@ test_golden = do
     ]
   where
     pp :: [Parser.TermBytes] -> LByteString
-    pp inp =
-      cc inp
-        & map
-          ( \case
-              Parser.TBPlain i -> encodeUtf8 (Builder.toLazyText i)
-              other -> show other
-          )
-        & map (<> "\n")
-        & mconcat
-      where
-        cc :: [Parser.TermBytes] -> [Parser.TermBytes]
-        cc (Parser.TBSpecial o : xs) = Parser.TBSpecial o : cc xs
-        cc ((Parser.TBPlain b) : xs) =
-          let (ps, rest) =
-                span
-                  ( \case
-                      Parser.TBPlain _ -> True
-                      _ -> False
-                  )
-                  xs
-              ps' = map (\(Parser.TBPlain i) -> i) ps
-           in Parser.TBPlain (mconcat (b : ps')) : cc rest
-        cc [] = []
+    pp [] = "\n"
+    pp (Parser.TBPlain i : Parser.TBPlain j : xs) =
+      encodeUtf8 (Text.singleton i) <> pp (Parser.TBPlain j : xs)
+    pp (Parser.TBPlain i : xs) =
+      encodeUtf8 (Text.singleton i) <> "\n" <> pp xs
+    pp (Parser.TBSpecial i : xs) =
+      encodeUtf8 (show @Text i) <> "\n" <> pp xs

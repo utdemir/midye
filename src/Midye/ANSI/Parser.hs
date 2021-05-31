@@ -10,15 +10,13 @@ where
 
 import "attoparsec" Data.Attoparsec.Text (Parser)
 import "attoparsec" Data.Attoparsec.Text qualified as Attoparsec
-import "text" Data.Text.Lazy.Builder (Builder)
-import "text" Data.Text.Lazy.Builder qualified as Builder
 import "streaming" Streaming (Of, Stream)
 import "this" Streaming.Attoparsec (parsed)
 import "streaming-bytestring" Streaming.ByteString qualified as StreamingBS
 import "this" Streaming.Text qualified
 
 data TermBytes
-  = TBPlain Builder
+  = TBPlain Char
   | TBSpecial TermSpecial
   deriving stock (Show, Eq)
 
@@ -40,6 +38,7 @@ data ControlCharacter
   | CC_ESC
   | CC_DEL
   | CC_CSI
+  | CCUnknown Char
   deriving stock (Show, Eq)
 
 data TermSequenceNonCSI
@@ -53,10 +52,12 @@ data TermSequenceNonCSI
   | TSNC_DECRC
   | TSNC_CSI
   | TSNC_OSC
+  | TSNCUnknown Char
   deriving stock (Show, Eq)
 
 data TermSequenceCSI
   = TSC_SGR [Int]
+  | TSCUnknown Char
   deriving stock (Show, Eq)
 
 pControlCharacter :: Parser ControlCharacter
@@ -84,7 +85,7 @@ pTermSequenceNonCSI =
     'D' -> return TSNC_IND
     '[' -> return TSNC_CSI
     -- FIXME: There're more
-    a -> fail $ "not a non-csi sequence: " ++ show a ++ "."
+    other -> return $ TSNCUnknown other
 
 -- Assuming an 'ESC [' or 'CSI' sequence is parsed already.
 -- FIXME: When parsing sequences, another control character/sequence might start.
@@ -95,7 +96,7 @@ pTermSequenceCSI = do
   case action of
     'm' -> return $ TSC_SGR params
     -- FIXME: There're more
-    a -> fail $ "not a csi action: " ++ show a ++ "."
+    other -> return $ TSCUnknown other
 
 pTermSpecial :: Parser TermSpecial
 pTermSpecial = do
@@ -117,7 +118,7 @@ pTermSpecial = do
 pTermBytes :: Parser TermBytes
 pTermBytes = do
   (TBSpecial <$> pTermSpecial)
-    <|> (Attoparsec.anyChar <&> TBPlain . Builder.singleton)
+    <|> (Attoparsec.anyChar <&> TBPlain)
 
 run :: Monad m => StreamingBS.ByteStream m a -> Stream (Of TermBytes) m a
 run bs =
