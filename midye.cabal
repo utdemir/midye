@@ -47,6 +47,7 @@ common common-options
                       Midye.ANSI.Printer
                       Data.Color
                       Streaming.Attoparsec
+                      Data.Attoparsec.ByteString.Extra
                       Streaming.Text
                       Midye.Process
                       Midye.Main
@@ -89,6 +90,7 @@ test-suite midye-tests
   hs-source-dirs:     test/ src/
   main-is:            Driver.hs
   other-modules:      Tests.Midye.ANSI.Parser
+                    , Tests.Midye.ANSI
                     , Tests.Streaming.Attoparsec
                     , Tests.Streaming.Text
   build-depends:      hedgehog
@@ -97,3 +99,6 @@ test-suite midye-tests
                     , tasty-golden
                     , tasty-discover
                     , tasty-hunit
+                    , temporary
+                    , HUnit
+                    , base64-bytestring

@@ -10,11 +10,13 @@ module Midye.Process
   )
 where
 
+import Foreign.Marshal.Alloc (free)
+import Foreign.Ptr (Ptr)
 import "inline-c" Language.C.Inline qualified as C
 import "streaming-bytestring" Streaming.ByteString (ByteStream)
 import "streaming-bytestring" Streaming.ByteString qualified as StreamingBS
 import System.Exit (ExitCode (..))
-import System.IO (BufferMode (NoBuffering), hSetBuffering, hClose, hFlush)
+import System.IO (BufferMode (NoBuffering), hClose, hFlush, hSetBuffering)
 import "unix" System.Posix.IO (fdToHandle)
 import System.Posix.Types (Fd (..))
 import "process" System.Process qualified as Process
@@ -22,9 +24,12 @@ import "process" System.Process qualified as Process
 C.context (C.baseCtx <> C.bsCtx)
 
 C.include "<pty.h>"
+C.include "<sys/ioctl.h>"
 C.include "<stdio.h>"
+C.include "<stdlib.h>"
 
 execWithPty ::
+  (Int, Int) ->
   FilePath ->
   [String] ->
   IO
@@ -34,10 +39,13 @@ execWithPty ::
       IO (),
       Process.ProcessHandle
     )
-execWithPty fp args = do
-  (stdoutMaster, stdoutSlave) <- openPty
-  (stderrMaster, stderrSlave) <- openPty
-  (stdinMaster, stdinSlave) <- openPty
+execWithPty size fp args = do
+  wsStdout <- createWinsize size
+  wsStderr <- createWinsize size
+  wsStdin <- createWinsize size
+  (stdoutMaster, stdoutSlave) <- openPty wsStdout
+  (stderrMaster, stderrSlave) <- openPty wsStderr
+  (stdinMaster, stdinSlave) <- openPty wsStdin
   mapM_ (flip hSetBuffering NoBuffering) [stdoutMaster, stderrMaster, stdinSlave]
   let p =
         (Process.proc fp args)
@@ -49,8 +57,14 @@ execWithPty fp args = do
 
   let closeHandles = do
         mapM_
-          (\f -> hFlush f >> hClose f)
+          hFlush
+          [stdoutMaster, stderrMaster, stdinMaster, stdoutSlave, stderrSlave, stdinSlave]
+        mapM_
+          hClose
           [stdoutMaster, stderrMaster, stdinMaster]
+        mapM_
+          free
+          [wsStdout, wsStderr, wsStdin]
 
   return
     ( StreamingBS.hGetContents stdoutSlave,
@@ -60,15 +74,30 @@ execWithPty fp args = do
       processHandle
     )
 
-openPty :: IO (Handle, Handle)
-openPty = do
+createWinsize :: (Int, Int) -> IO (Ptr ())
+createWinsize (height, width) =
+  let cheight = fromIntegral height
+      cwidth = fromIntegral width
+   in [C.block|
+      void* {
+        struct winsize* ws = malloc(sizeof(struct winsize));
+        ws -> ws_row = $(int cheight);
+        ws -> ws_col = $(int cwidth);
+        return ws;
+      }
+      |]
+
+openPty :: Ptr () -> IO (Handle, Handle)
+openPty ws = do
   (masterFd, slaveFd) <-
     C.withPtrs_ @(C.CInt, C.CInt) $ \(master_ptr, slave_ptr) -> do
-      [C.block|
-        void {
-          openpty($(int* master_ptr), $(int* slave_ptr), NULL, NULL, NULL);
-        }
-      |]
+      ret <-
+        [C.block|
+          int {
+            openpty($(int* master_ptr), $(int* slave_ptr), NULL, NULL, $(void* ws));
+          }
+        |]
+      when (ret /= 0) (fail $ "openpty failed with " ++ show ret ++ ".")
   (,)
     <$> fdToHandle (Fd masterFd)
     <*> fdToHandle (Fd slaveFd)

@@ -18,8 +18,7 @@ data TermBytes
   deriving stock (Show, Eq)
 
 data TermSpecial
-  =
-  -- control chars
+  = -- control chars
     TS_BEL
   | TS_BS
   | TS_HT
@@ -31,25 +30,36 @@ data TermSpecial
   | TS_ESC
   | TS_DEL
   | TS_CSI
-  -- Non CSI sequences
-  | TS_RIS
+  | -- Non CSI sequences
+    TS_RIS
   | TS_IND
   | TS_NEL
   | TS_HTS
   | TS_RI
-  | TS_DECID
-  | TS_DECSC
-  | TS_DECRC
-  | TS_OSC
   | TS_DECPNM
   | TS_DECPAM
-  -- CSI sequences
-  | TS_SGR [Int]
-  | TS_UnknownCSISequence Bool Char [Int]
+  | -- CSI sequences
+    TS_SGR [Int]
+  | TS_DECSTBM [Int]
   | TS_DECCKM Bool
+  | TS_DECTCEM Bool
+  | TS_CUP [Int]
+  | TS_CUU [Int]
+  | TS_CUD [Int]
+  | TS_CUF [Int]
+  | TS_CUB [Int]
+  | TS_ED [Int]
+  | TS_EL [Int]
+  | TS_StartBlinkingCursor Bool
   | TS_X11MouseReporting Bool
   | TS_BracketedPasteMode Bool
-  | TS_UnknownDECSequence Integer Bool
+  | -- unknown
+    TSUnknown TSUnknown
+  deriving stock (Show, Eq)
+
+data TSUnknown
+  = TSUnknownCSISequence Bool Char [Int]
+  | TSUnknownDECSequence Integer Bool
   deriving stock (Show, Eq)
 
 pTermSpecial :: Parser TermSpecial
@@ -88,31 +98,41 @@ pTermSequenceNonCSI = do
 -- Assuming an 'ESC [' or 'CSI' sequence is parsed already.
 pTermSequenceCSI :: Parser TermSpecial
 pTermSequenceCSI = decExtensions <|> actualCSI
- where
-  actualCSI :: Parser TermSpecial
-  actualCSI = do
-    xtermExt <- (Attoparsec.char '>' $> True) <|> return False
-    -- FIXME: should be at most 16 times. possible DOS without this limit.
-    params <- Attoparsec.decimal `Attoparsec.sepBy` Attoparsec.char ';'
-    action <- Attoparsec.anyChar
-    case (xtermExt, action) of
-      (False, 'm') -> return $ TS_SGR params
-      -- TODO: There're more
-      (ext, other) -> return $ TS_UnknownCSISequence ext other params
+  where
+    actualCSI :: Parser TermSpecial
+    actualCSI = do
+      xtermExt <- (Attoparsec.char '>' $> True) <|> return False
+      -- FIXME: should be at most 16 times. possible DOS without this limit.
+      params <- (Attoparsec.decimal <|> return 0) `Attoparsec.sepBy` Attoparsec.char ';'
+      action <- Attoparsec.anyChar
+      case (xtermExt, action) of
+        (False, 'm') -> return $ TS_SGR params
+        (False, 'r') -> return $ TS_DECSTBM params
+        (False, 'H') -> return $ TS_CUP params
+        (False, 'J') -> return $ TS_ED params
+        (False, 'K') -> return $ TS_EL params
+        (False, 'A') -> return $ TS_CUU params
+        (False, 'B') -> return $ TS_CUD params
+        (False, 'C') -> return $ TS_CUF params
+        (False, 'D') -> return $ TS_CUB params
+        -- TODO: There're more
+        (ext, other) -> return $ TSUnknown (TSUnknownCSISequence ext other params)
 
-  decExtensions :: Parser TermSpecial
-  decExtensions = do
-    _ <- Attoparsec.char '?'
-    n <- Attoparsec.decimal @Integer
-    mode <- (Attoparsec.char 'h' $> True
-              <|> Attoparsec.char 'l' $> False)
-    case n of
-      1000 -> return $ TS_X11MouseReporting mode
-      2004 -> return $ TS_BracketedPasteMode mode
-      -- TODO: There're more
-      _ -> return $ TS_UnknownDECSequence n mode
-
-
+    decExtensions :: Parser TermSpecial
+    decExtensions = do
+      _ <- Attoparsec.char '?'
+      n <- Attoparsec.decimal @Integer
+      mode <-
+        Attoparsec.char 'h' $> True
+          <|> Attoparsec.char 'l' $> False
+      case n of
+        1 -> return $ TS_DECCKM mode
+        12 -> return $ TS_StartBlinkingCursor mode
+        25 -> return $ TS_DECTCEM mode
+        1000 -> return $ TS_X11MouseReporting mode
+        2004 -> return $ TS_BracketedPasteMode mode
+        -- TODO: There're more
+        _ -> return $ TSUnknown (TSUnknownDECSequence n mode)
 
 pTermBytes :: Parser TermBytes
 pTermBytes = do

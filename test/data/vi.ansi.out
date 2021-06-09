@@ -1,203 +1,198 @@
 TS_X11MouseReporting True
-TS_UnknownDECSequence 1049 True
-TS_UnknownCSISequence '>' []
-4;2m
-TS_UnknownDECSequence 1 True
-TS_ESC
-=
+TSUnknown (TSUnknownDECSequence 1049 True)
+TSUnknown (TSUnknownCSISequence True 'm' [4,2])
+TS_DECCKM True
+TS_DECPAM
 TS_BracketedPasteMode True
-TS_UnknownCSISequence 'r' [1,12]
-TS_UnknownDECSequence 12 True
-TS_UnknownDECSequence 12 False
-TS_UnknownCSISequence 't' [22,2]
-TS_UnknownCSISequence 't' [22,1]
+TS_DECSTBM [1,12]
+TS_StartBlinkingCursor True
+TS_StartBlinkingCursor False
+TSUnknown (TSUnknownCSISequence False 't' [22,2])
+TSUnknown (TSUnknownCSISequence False 't' [22,1])
 TS_SGR [27]
 TS_SGR [23]
 TS_SGR [29]
-TS_SGR []
-TS_UnknownCSISequence 'H' []
-TS_UnknownCSISequence 'J' [2]
-TS_UnknownDECSequence 25 False
-TS_UnknownCSISequence 'H' [2,1]
+TS_SGR [0]
+TS_CUP [0]
+TS_ED [2]
+TS_DECTCEM False
+TS_CUP [2,1]
 TS_SGR [94]
 ~                                                                                                                                                                             
-TS_UnknownCSISequence 'H' [3,1]
+TS_CUP [3,1]
 ~                                                                                                                                                                             
-TS_UnknownCSISequence 'H' [4,1]
+TS_CUP [4,1]
 ~                                                                                                                                                                             
-TS_UnknownCSISequence 'H' [5,1]
+TS_CUP [5,1]
 ~                                                                                                                                                                             
-TS_UnknownCSISequence 'H' [6,1]
+TS_CUP [6,1]
 ~                                                                                                                                                                             
-TS_UnknownCSISequence 'H' [7,1]
+TS_CUP [7,1]
 ~                                                                                                                                                                             
-TS_UnknownCSISequence 'H' [8,1]
+TS_CUP [8,1]
 ~                                                                                                                                                                             
-TS_UnknownCSISequence 'H' [9,1]
+TS_CUP [9,1]
 ~                                                                                                                                                                             
-TS_UnknownCSISequence 'H' [10,1]
+TS_CUP [10,1]
 ~                                                                                                                                                                             
-TS_UnknownCSISequence 'H' [11,1]
+TS_CUP [11,1]
 ~                                                                                                                                                                             
-TS_SGR []
-TS_UnknownCSISequence 'H' [12,157]
+TS_SGR [0]
+TS_CUP [12,157]
 0,0-1
-TS_UnknownCSISequence 'C' [9]
+TS_CUF [9]
 All
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownDECSequence 25 True
+TS_CUP [1,1]
+TS_DECTCEM True
 TS_BEL
-TS_UnknownDECSequence 25 False
-TS_UnknownCSISequence 'H' [12,147]
+TS_DECTCEM False
+TS_CUP [12,147]
 ^@
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,1]
+TS_CUP [12,147]
   
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,1]
+TS_DECTCEM True
+TS_DECTCEM False
+TS_CUP [12,147]
 ^M
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,1]
+TS_CUP [12,147]
   
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,1]
+TS_DECTCEM True
+TS_DECTCEM False
+TS_CUP [12,147]
 ^M
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,1]
+TS_CUP [12,147]
   
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,1]
+TS_DECTCEM True
+TS_DECTCEM False
+TS_CUP [12,147]
 i
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,1]
+TS_CUP [12,147]
  
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownCSISequence 'H' [12,1]
+TS_CUP [1,1]
+TS_CUP [12,1]
 TS_SGR [1]
 -- INSERT --
-TS_SGR []
-TS_UnknownCSISequence 'H' [12,157]
-TS_UnknownCSISequence 'K' []
-TS_UnknownCSISequence 'H' [12,157]
+TS_SGR [0]
+TS_CUP [12,157]
+TS_EL [0]
+TS_CUP [12,157]
 0,1
-TS_UnknownCSISequence 'C' [11]
+TS_CUF [11]
 All
-TS_UnknownCSISequence 'H' [1,1]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,1]
+TS_DECTCEM True
+TS_DECTCEM False
 d
-TS_UnknownCSISequence 'H' [12,157]
+TS_CUP [12,157]
 1,2
-TS_UnknownCSISequence 'H' [1,2]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,2]
+TS_DECTCEM True
+TS_DECTCEM False
 o
-TS_UnknownCSISequence 'H' [12,159]
+TS_CUP [12,159]
 3
-TS_UnknownCSISequence 'H' [1,3]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,3]
+TS_DECTCEM True
+TS_DECTCEM False
 i
-TS_UnknownCSISequence 'H' [12,159]
+TS_CUP [12,159]
 4
-TS_UnknownCSISequence 'H' [1,4]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,4]
+TS_DECTCEM True
+TS_DECTCEM False
 n
-TS_UnknownCSISequence 'H' [12,159]
+TS_CUP [12,159]
 5
-TS_UnknownCSISequence 'H' [1,5]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,5]
+TS_DECTCEM True
+TS_DECTCEM False
 g
-TS_UnknownCSISequence 'H' [12,159]
+TS_CUP [12,159]
 6
-TS_UnknownCSISequence 'H' [1,6]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
-TS_UnknownCSISequence 'H' [12,159]
+TS_CUP [1,6]
+TS_DECTCEM True
+TS_DECTCEM False
+TS_CUP [12,159]
 7
-TS_UnknownCSISequence 'H' [1,7]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,7]
+TS_DECTCEM True
+TS_DECTCEM False
 s
-TS_UnknownCSISequence 'H' [12,159]
+TS_CUP [12,159]
 8
-TS_UnknownCSISequence 'H' [1,8]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,8]
+TS_DECTCEM True
+TS_DECTCEM False
 t
-TS_UnknownCSISequence 'H' [12,159]
+TS_CUP [12,159]
 9
-TS_UnknownCSISequence 'H' [1,9]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,9]
+TS_DECTCEM True
+TS_DECTCEM False
 u
-TS_UnknownCSISequence 'H' [12,159]
+TS_CUP [12,159]
 10
-TS_UnknownCSISequence 'H' [1,10]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,10]
+TS_DECTCEM True
+TS_DECTCEM False
 f
-TS_UnknownCSISequence 'H' [12,160]
+TS_CUP [12,160]
 1
-TS_UnknownCSISequence 'H' [1,11]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
+TS_CUP [1,11]
+TS_DECTCEM True
+TS_DECTCEM False
 f
-TS_UnknownCSISequence 'H' [12,160]
+TS_CUP [12,160]
 2
-TS_UnknownCSISequence 'H' [1,12]
-TS_UnknownDECSequence 25 True
-TS_UnknownCSISequence 'H' [12,1]
-TS_UnknownCSISequence 'K' []
-TS_UnknownCSISequence 'H' [1,11]
-TS_UnknownDECSequence 25 False
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,12]
+TS_DECTCEM True
+TS_CUP [12,1]
+TS_EL [0]
+TS_CUP [1,11]
+TS_DECTCEM False
+TS_CUP [12,147]
 ^[
-TS_UnknownCSISequence 'H' [1,11]
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,11]
+TS_CUP [12,147]
   
-TS_UnknownCSISequence 'H' [1,12]
-TS_UnknownCSISequence 'H' [12,157]
+TS_CUP [1,12]
+TS_CUP [12,157]
 1,11
-TS_UnknownCSISequence 'C' [10]
+TS_CUF [10]
 All
-TS_UnknownCSISequence 'H' [1,11]
-TS_UnknownDECSequence 25 True
-TS_UnknownDECSequence 25 False
-TS_UnknownCSISequence 'H' [12,147]
+TS_CUP [1,11]
+TS_DECTCEM True
+TS_DECTCEM False
+TS_CUP [12,147]
 :
-TS_UnknownCSISequence 'H' [1,11]
-TS_UnknownCSISequence 'H' [12,147]
-TS_UnknownCSISequence 'K' []
-TS_UnknownCSISequence 'H' [12,1]
+TS_CUP [1,11]
+TS_CUP [12,147]
+TS_EL [0]
+TS_CUP [12,1]
 :
-TS_UnknownDECSequence 25 True
+TS_DECTCEM True
 q!
 TS_CR
-TS_UnknownDECSequence 25 False
+TS_DECTCEM False
 TS_X11MouseReporting False
 TS_BracketedPasteMode False
-TS_UnknownCSISequence '>' []
-4;m
-TS_UnknownCSISequence 't' [23,2]
-TS_UnknownCSISequence 't' [23,1]
-TS_UnknownCSISequence 'H' [12,1]
-TS_UnknownCSISequence 'K' []
-TS_UnknownCSISequence 'H' [12,1]
+TSUnknown (TSUnknownCSISequence True 'm' [4,0])
+TSUnknown (TSUnknownCSISequence False 't' [23,2])
+TSUnknown (TSUnknownCSISequence False 't' [23,1])
+TS_CUP [12,1]
+TS_EL [0]
+TS_CUP [12,1]
 TS_BracketedPasteMode False
-TS_UnknownDECSequence 1 False
-TS_ESC
->
-TS_UnknownDECSequence 25 True
-TS_UnknownCSISequence '>' []
-4;m
-TS_UnknownDECSequence 1049 False
+TS_DECCKM False
+TS_DECPNM
+TS_DECTCEM True
+TSUnknown (TSUnknownCSISequence True 'm' [4,0])
+TSUnknown (TSUnknownDECSequence 1049 False)
 

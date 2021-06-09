@@ -3,17 +3,18 @@ module Midye.Main
   )
 where
 
+import Control.Concurrent (threadDelay)
 import Control.Concurrent.Async
 import Control.Concurrent.MVar (modifyMVar_)
+import Data.Duration qualified
 import Midye.ANSI.Parser qualified as ANSI.Parser
 import Midye.ANSI.Printer qualified as ANSI.Printer
 import Midye.Process
 import Midye.Render qualified
 import Streaming.ByteString qualified as StreamingBS
 import Streaming.Prelude qualified as Streaming
-import System.IO qualified as IO
 import System.Clock qualified as Clock
-import Data.Duration qualified
+import System.IO qualified as IO
 
 main :: IO ()
 main = do
@@ -35,14 +36,18 @@ repl = do
   runCommand cmd
   repl
 
+height, width :: Int
+height = 20
+width = 90
+
 runCommand :: Text -> IO ()
 runCommand cmd = do
   startTime <- Clock.getTime Clock.MonotonicRaw
 
-  (stdoutS, stderrS, stdinS, closeHandles, process) <- execWithPty "bash" ["-c", toString cmd]
+  (stdoutS, stderrS, stdinS, closeHandles, process) <- execWithPty (height, width) "bash" ["-c", toString cmd]
 
-  stdoutVar <- newMVar $ ANSI.Printer.initVTY (160, 20)
-  stderrVar <- newMVar $ ANSI.Printer.initVTY (160, 20)
+  stdoutVar <- newMVar $ ANSI.Printer.initVTY (height, width)
+  stderrVar <- newMVar $ ANSI.Printer.initVTY (height, width)
 
   t1 <-
     async $
@@ -68,23 +73,25 @@ runCommand cmd = do
         & stdinS
 
   exitCode <- waitForProcess process
+  endTime <- Clock.getTime Clock.MonotonicRaw
+
+  -- FIXME: Something is not flushing correctly, and we sometimes get missing output.
+  -- This makes it better, but we need to figure out the root cause.
+  threadDelay 10000
+
   closeHandles
 
   mapM_ wait [t1, t2]
-  endTime <- Clock.getTime Clock.MonotonicRaw
-
   mapM_ cancel [t4, t5]
 
   putStrLn "stdout:"
-  outscr <- readMVar stdoutVar
-  Midye.Render.render outscr
+  Midye.Render.render =<< readMVar stdoutVar
 
   putStrLn "stderr:"
-  errscr <- readMVar stderrVar
-  Midye.Render.render errscr
+  Midye.Render.render =<< readMVar stderrVar
 
   let took = Clock.toNanoSecs $ Clock.diffTimeSpec endTime startTime
   let tookHuman = Data.Duration.approximativeDuration (fromIntegral @Integer @Data.Duration.Seconds took / 1_000_000_000)
-  putStrLn $ mconcat [ "Took: ", tookHuman, "."]
+  putStrLn $ mconcat ["Took: ", tookHuman, "."]
 
   print exitCode
