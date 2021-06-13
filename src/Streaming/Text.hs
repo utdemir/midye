@@ -15,6 +15,7 @@ decodeUtf8 inp =
     & Streaming.filter (not . ByteString.null)
     & go (Text.streamDecodeUtf8With Text.lenientDecode "")
   where
+    {-@ lazy go @-}
     go ::
       Text.Decoding -> -- current state
       Stream (Of ByteString) m r -> -- rest of the stream

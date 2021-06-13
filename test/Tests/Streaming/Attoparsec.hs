@@ -6,6 +6,7 @@ import "hedgehog" Hedgehog.Gen qualified as Gen
 import "hedgehog" Hedgehog.Range qualified as Range
 import "this" Streaming.Attoparsec (parsed)
 import "streaming" Streaming.Prelude qualified as Streaming
+import TestArgs
 
 exampleParser :: Attoparsec.Parser Text
 exampleParser =
@@ -13,7 +14,7 @@ exampleParser =
     <&> toText
 
 hprop_parsed :: Property
-hprop_parsed = withTests 1000 . property $ do
+hprop_parsed = fastPropertyTest . property $ do
   inputChunks <- forAll $ Gen.list (Range.linear 0 100) (Gen.text (Range.linear 1 20) Gen.lower)
   let input = mconcat inputChunks
 

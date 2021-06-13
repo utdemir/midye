@@ -82,23 +82,35 @@ executable midye
   ghc-options:        -threaded -O2
   build-depends:      base
 
+flag fast-tests
+  description: Reduce the amount of property tests. Useful for faster feedback.
+  default:     False
+  manual:      True
+
 test-suite midye-tests
   import:             common-options
   ghc-options:        -Wno-unused-packages -threaded
                       -rtsopts -with-rtsopts=-N
   type:               exitcode-stdio-1.0
   hs-source-dirs:     test/ src/
+  if flag(fast-tests) {
+    hs-source-dirs: test/args/fast/
+  } else {
+    hs-source-dirs: test/args/slow/
+  }
   main-is:            Driver.hs
   other-modules:      Tests.Midye.ANSI.Parser
                     , Tests.Midye.ANSI
                     , Tests.Streaming.Attoparsec
                     , Tests.Streaming.Text
+                    , TestArgs
   build-depends:      hedgehog
                     , tasty
                     , tasty-hedgehog
                     , tasty-golden
-                    , tasty-discover
                     , tasty-hunit
+                    , tasty-discover
                     , temporary
                     , HUnit
                     , base64-bytestring
+

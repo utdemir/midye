@@ -23,6 +23,7 @@ main = do
   IO.hSetBuffering IO.stdin IO.NoBuffering
   repl
 
+{-@ lazy repl @-}
 repl :: IO ()
 repl = do
   putText "> "

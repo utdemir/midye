@@ -13,6 +13,7 @@ parsed ::
   Stream (Of a) m (Either ([String], String) r)
 parsed parser = go Nothing Nothing
   where
+    {-@ lazy go @-}
     go ::
       Maybe (t -> IResult t a) -> -- possible incomplete parse
       Maybe t -> -- data which isn't yet fed into the parser

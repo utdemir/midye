@@ -16,7 +16,7 @@ import "inline-c" Language.C.Inline qualified as C
 import "streaming-bytestring" Streaming.ByteString (ByteStream)
 import "streaming-bytestring" Streaming.ByteString qualified as StreamingBS
 import System.Exit (ExitCode (..))
-import System.IO (BufferMode (NoBuffering), hClose, hFlush, hSetBuffering)
+import System.IO (hClose, hSetBuffering, BufferMode (NoBuffering), hFlush)
 import "unix" System.Posix.IO (fdToHandle)
 import System.Posix.Types (Fd (..))
 import "process" System.Process qualified as Process
@@ -46,7 +46,7 @@ execWithPty size fp args = do
   (stdoutMaster, stdoutSlave) <- openPty wsStdout
   (stderrMaster, stderrSlave) <- openPty wsStderr
   (stdinMaster, stdinSlave) <- openPty wsStdin
-  mapM_ (flip hSetBuffering NoBuffering) [stdoutMaster, stderrMaster, stdinSlave]
+  mapM_ (`hSetBuffering` NoBuffering) [stdoutMaster, stderrMaster, stdinSlave]
   let p =
         (Process.proc fp args)
           { Process.std_out = Process.UseHandle stdoutMaster,

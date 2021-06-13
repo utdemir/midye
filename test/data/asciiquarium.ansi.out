@@ -1,0 +1,1396 @@
+TSUnknown (TSUnknownDECSequence 1049 True)
+TS_DECSTBM [1,24]
+TS_ESC
+(B
+TS_SGR [0]
+TSUnknown (TSUnknownCSISequence False 'l' [4])
+TSUnknown (TSUnknownDECSequence 7 True)
+TS_DECTCEM False
+TS_SGR [39,49]
+TS_SGR [39,49]
+TS_SGR [37]
+TS_SGR [40]
+TS_CUP [1,1]
+                                                                                                                                                                              
+TS_CUP [2,1]
+                                                                                                                                                                              
+TS_CUP [3,1]
+                                                                                                                                                                              
+TS_CUP [4,1]
+                                                                                                                                                                              
+TS_CUP [5,1]
+                                                                                                                                                                              
+TS_CUP [6,1]
+                                                                                                                                                                              
+TS_CUP [7,1]
+                                                                                                                                                                              
+TS_CUP [8,1]
+                                                                                                                                                                              
+TS_CUP [9,1]
+                                                                                                                                                                              
+TS_CUP [10,1]
+                                                                                                                                                                              
+TS_CUP [11,1]
+                                                                                                                                                                              
+TS_CUP [12,1]
+                                                                                                                                                                              
+TS_CUP [13,1]
+                                                                                                                                                                              
+TS_CUP [14,1]
+                                                                                                                                                                              
+TS_CUP [15,1]
+                                                                                                                                                                              
+TS_CUP [16,1]
+                                                                                                                                                                              
+TS_CUP [17,1]
+                                                                                                                                                                              
+TS_CUP [18,1]
+                                                                                                                                                                              
+TS_CUP [19,1]
+                                                                                                                                                                              
+TS_CUP [20,1]
+                                                                                                                                                                              
+TS_CUP [21,1]
+                                                                                                                                                                              
+TS_CUP [22,1]
+                                                                                                                                                                              
+TS_CUP [23,1]
+                                                                                                                                                                              
+TS_CUP [24,1]
+                                                                                                                                                                             
+TSUnknown (TSUnknownDECSequence 7 False)
+ 
+TSUnknown (TSUnknownDECSequence 7 True)
+TS_CUP [0]
+TSUnknown (TSUnknownCSISequence False 'd' [6])
+TS_SGR [36]
+TS_SGR [40]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TS_CUP [7,1]
+^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^ 
+TS_CUP [8,1]
+^^^^      ^^^^     ^^^    ^^     ^^^^      ^^^^     ^^^    ^^     ^^^^      ^^^^     ^^^    ^^     ^^^^      ^^^^     ^^^    ^^     ^^^^      ^^^^     ^^^    ^^     ^^^^   
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [36]
+TS_SGR [40]
+.-
+TS_CUP [9,1]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [36]
+TS_SGR [40]
+^^      ^^^^      ^^^    ^^^^^^  ^^      ^^^^      ^^^    ^^^^^^  ^^      ^^^^      ^^^    ^^^^^^  ^^      ^^^^      ^^^    ^^^^^^  ^^      ^^^^      ^^^    ^^^^^^  ^^      ^
+TS_CUP [12,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+               T
+TS_SGR [31]
+TS_SGR [40]
+~~
+TSUnknown (TSUnknownCSISequence False 'G' [174])
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [35]
+TS_SGR [40]
+/
+TS_CUP [13,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+               |
+TSUnknown (TSUnknownCSISequence False 'G' [173])
+TS_SGR [34]
+TS_SGR [40]
+<
+TS_CR
+TS_LF
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [35]
+TS_SGR [40]
+>
+TS_CUP [14,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+              
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/^\
+TSUnknown (TSUnknownCSISequence False 'G' [174])
+TS_SGR [35]
+TS_SGR [40]
+\
+TS_CUP [15,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+             
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+   
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+\
+TS_CR
+TS_LF
+TS_SGR [34]
+TS_SGR [40]
+<
+TS_CUP [16,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ _   _   _  
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+     
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+\
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  _   _   _
+TS_CR
+TS_LF
+TS_SGR [33]
+TS_SGR [40]
+>
+TS_CUP [17,143]
+TS_SGR [30]
+TS_SGR [40]
+[ ]_[ ]_[ ]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ _   _ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+\
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+[ ]_[ ]_[ ]
+TS_CUP [18,143]
+|_=__-_ =_|_[ ]_[ ]_|_=-___-__|
+TS_CUP [19,66]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_CUP [19,121]
+ )
+TS_CUP [19,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ | _- =  |
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+_ = _    |= _=   |
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [37]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [37]
+TS_SGR [40]
+o
+TS_CUP [20,12]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_CUP [20,31]
+ )
+TS_CUP [20,66]
+(
+TS_CUP [20,121]
+(
+TS_CUP [20,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |= -[]  |
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ = _ =    |_-=_
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |
+TS_SGR [31]
+TS_SGR [40]
+>:
+TS_CUP [21,12]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_CUP [21,24]
+ )
+TS_SGR [37]
+TS_SGR [40]
+     
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_CUP [21,66]
+ )
+TS_CUP [21,120]
+  )
+TS_CUP [21,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ | =_   
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ ) )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+- 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+___
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+    | =_ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  |
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [37]
+TS_SGR [40]
+ 
+TS_SGR [32]
+TS_SGR [40]
+/
+TS_CUP [22,12]
+ )
+TS_CUP [22,24]
+(
+TSUnknown (TSUnknownCSISequence False 'G' [31])
+ )
+TS_CUP [22,41]
+ )
+TS_CUP [22,66]
+(
+TS_CUP [22,118]
+ )((
+TS_CUP [22,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |=  []-
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|\
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+   |=_ =
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |
+TS_SGR [33]
+TS_SGR [40]
+<
+TS_SGR [37]
+TS_SGR [40]
+'
+TS_CUP [23,12]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_CUP [23,24]
+ )
+TS_SGR [37]
+TS_SGR [40]
+     
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_CUP [23,41]
+(
+TS_CUP [23,66]
+ )
+TS_CUP [23,118]
+(
+TS_SGR [37]
+TS_SGR [40]
+ 
+TS_SGR [32]
+TS_SGR [40]
+  )
+TS_CUP [23,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |- =_  
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ ) )
+TS_SGR [33]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  |- = 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  |
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [37]
+TS_SGR [40]
+ 
+TS_SGR [31]
+TS_SGR [40]
+\
+TS_CUP [24,12]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_CUP [24,24]
+(
+TSUnknown (TSUnknownCSISequence False 'G' [31])
+ )
+TS_CUP [24,41]
+ )
+TS_CUP [24,66]
+(
+TS_CUP [24,118]
+ )((
+TS_CUP [24,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |______
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+_
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|_|_|_|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+__|____
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+_|
+TS_CUF [0]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [39,49]
+TS_SGR [37]
+TS_SGR [40]
+TS_SGR [39,49]
+TS_SGR [37]
+TS_SGR [40]
+TS_CUP [0]
+                                                                                                                                                                              
+TS_CUP [2,1]
+                                                                                                                                                                              
+TS_CUP [3,1]
+                                                                                                                                                                              
+TS_CUP [4,1]
+                                                                                                                                                                              
+TS_CUP [5,1]
+                                                                                                                                                                              
+TS_CUP [6,1]
+                                                                                                                                                                              
+TS_CUP [7,1]
+                                                                                                                                                                              
+TS_CUP [8,1]
+                                                                                                                                                                              
+TS_CUP [9,1]
+                                                                                                                                                                              
+TS_CUP [10,1]
+                                                                                                                                                                              
+TS_CUP [11,1]
+                                                                                                                                                                              
+TS_CUP [12,1]
+                                                                                                                                                                              
+TS_CUP [13,1]
+                                                                                                                                                                              
+TS_CUP [14,1]
+                                                                                                                                                                              
+TS_CUP [15,1]
+                                                                                                                                                                              
+TS_CUP [16,1]
+                                                                                                                                                                              
+TS_CUP [17,1]
+                                                                                                                                                                              
+TS_CUP [18,1]
+                                                                                                                                                                              
+TS_CUP [19,1]
+                                                                                                                                                                              
+TS_CUP [20,1]
+                                                                                                                                                                              
+TS_CUP [21,1]
+                                                                                                                                                                              
+TS_CUP [22,1]
+                                                                                                                                                                              
+TS_CUP [23,1]
+                                                                                                                                                                              
+TS_CUP [24,1]
+                                                                                                                                                                             
+TSUnknown (TSUnknownDECSequence 7 False)
+ 
+TSUnknown (TSUnknownDECSequence 7 True)
+TS_CUP [0]
+TSUnknown (TSUnknownCSISequence False 'd' [6])
+TS_SGR [36]
+TS_SGR [40]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TS_CUP [7,1]
+^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^  ^^^   ^^^    ^^^^      ^^^^ ^^^ 
+TS_CUP [8,1]
+^^^^      ^^^^     ^^^    ^^     ^^^^      ^^^^     ^^^    ^^     ^^^^      ^^^^     ^^^    ^^     ^^^^      ^^^^     ^^^    ^^     ^^^^      ^^^^     ^^^    ^^     ^^^^  
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [36]
+TS_SGR [40]
+.-'
+TS_CUP [9,1]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [36]
+TS_SGR [40]
+^^      ^^^^      ^^^    ^^^^^^  ^^      ^^^^      ^^^    ^^^^^^  ^^      ^^^^      ^^^    ^^^^^^  ^^      ^^^^      ^^^    ^^^^^^  ^^      ^^^^      ^^^    ^^^^^^  ^^      ^
+TS_CUP [11,173]
+TS_SGR [35]
+TS_SGR [40]
+,.
+TS_CUP [12,1]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [33]
+TS_SGR [40]
+,
+TS_CUP [12,143]
+TS_SGR [30]
+TS_SGR [40]
+               T
+TS_SGR [31]
+TS_SGR [40]
+~~
+TSUnknown (TSUnknownCSISequence False 'G' [172])
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [35]
+TS_SGR [40]
+/
+TS_CR
+TS_LF
+TS_CUF [0]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [33]
+TS_SGR [40]
+\
+TS_CUP [13,143]
+TS_SGR [30]
+TS_SGR [40]
+               |
+TSUnknown (TSUnknownCSISequence False 'G' [171])
+TS_SGR [34]
+TS_SGR [40]
+<
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [37]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [37]
+TS_SGR [40]
+'
+TS_CR
+TS_LF
+'
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [37]
+TS_SGR [40]
+ 
+TS_SGR [35]
+TS_SGR [40]
+>
+TS_CUP [14,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+              
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/^\
+TSUnknown (TSUnknownCSISequence False 'G' [172])
+TS_SGR [35]
+TS_SGR [40]
+\
+TS_SGR [37]
+TS_SGR [40]
+ 
+TS_SGR [32]
+TS_SGR [40]
+\
+TS_CUP [15,1]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [37]
+TS_SGR [40]
+o
+TS_SGR [33]
+TS_SGR [40]
+/
+TS_CUP [15,143]
+TS_SGR [30]
+TS_SGR [40]
+             
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+   
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+\
+TSUnknown (TSUnknownCSISequence False 'G' [173])
+TS_SGR [35]
+TS_SGR [40]
+`'
+TS_CUP [16,1]
+:
+TS_SGR [34]
+TS_SGR [40]
+<
+TS_CUP [16,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ _   _   _  
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+     
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+\
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  _   _   _
+TS_CR
+TS_LF
+TS_SGR [37]
+TS_SGR [40]
+o
+TS_SGR [33]
+TS_SGR [40]
+>
+TS_CUP [17,143]
+TS_SGR [30]
+TS_SGR [40]
+[ ]_[ ]_[ ]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ _   _ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+\
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+[ ]_[ ]_[ ]
+TS_CR
+TS_LF
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [31]
+TS_SGR [40]
+/
+TS_CUP [18,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+|_=__-_ =_|_[ ]_[ ]_|_=-___-__|
+TS_CUP [19,66]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_CUP [19,121]
+ )
+TS_CUP [19,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ | _- =  |
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+_ = _    |= _=   |
+TS_SGR [37]
+TS_SGR [40]
+o
+TS_SGR [31]
+TS_SGR [40]
+:
+TS_CUP [20,12]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_CUP [20,31]
+ )
+TS_CUP [20,66]
+(
+TS_CUP [20,121]
+(
+TS_CUP [20,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |= -[]  |
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ = _ =    |_-=_
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ 
+TS_SGR [31]
+TS_SGR [40]
+>::
+TS_CUP [21,12]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_CUP [21,24]
+ )
+TS_SGR [37]
+TS_SGR [40]
+     
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_CUP [21,66]
+ )
+TS_CUP [21,120]
+  )
+TS_CUP [21,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ | =_   
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ ) )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+- 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+___
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+    | =_ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+/
+TS_SGR [33]
+TS_SGR [40]
+,
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [31]
+TS_SGR [40]
+'
+TS_CUP [22,12]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_CUP [22,24]
+(
+TSUnknown (TSUnknownCSISequence False 'G' [31])
+ )
+TS_CUP [22,41]
+ )
+TS_CUP [22,66]
+(
+TS_CUP [22,118]
+ )((
+TS_CUP [22,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |=  []-
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+/|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|\
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+   |=_ =
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [33]
+TS_SGR [40]
+<
+TS_SGR [37]
+TS_SGR [40]
+'
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+)
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [36]
+TS_SGR [40]
+=
+TS_CUP [23,12]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_CUP [23,24]
+ )
+TS_SGR [37]
+TS_SGR [40]
+     
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_CUP [23,41]
+(
+TS_CUP [23,66]
+ )
+TS_CUP [23,118]
+(
+TS_SGR [37]
+TS_SGR [40]
+ 
+TS_SGR [32]
+TS_SGR [40]
+  )
+TS_CUP [23,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |- =_  
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ ) )
+TS_SGR [33]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  |- = 
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+  
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [31]
+TS_SGR [40]
+\
+TS_SGR [33]
+TS_SGR [40]
+`
+TS_CUP [24,12]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_CUP [24,24]
+(
+TSUnknown (TSUnknownCSISequence False 'G' [31])
+ )
+TS_CUP [24,41]
+ )
+TS_CUP [24,66]
+(
+TS_CUP [24,118]
+ )((
+TS_CUP [24,143]
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+ |______
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+|
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+(
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+_
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [33]
+TS_SGR [40]
+|_|_|_|
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+__|____
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [32]
+TS_SGR [40]
+ )
+TS_ESC
+(B
+TS_SGR [0,1]
+TS_SGR [30]
+TS_SGR [40]
+_|
+TS_CUF [0]
+TS_ESC
+(B
+TS_SGR [0]
+TS_SGR [39,49]
+TS_SGR [37]
+TS_SGR [40]
+TS_SGR [39,49]
+TS_CR
+TS_EL [0]
+TS_CUP [24,1]
+TS_StartBlinkingCursor False
+TS_DECTCEM True
+TSUnknown (TSUnknownDECSequence 1049 False)
+TS_CR
+TS_DECCKM False
+

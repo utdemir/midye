@@ -8,7 +8,10 @@ render scr = do
 
   forM_ (scr ^. vtyScreen) $ \row -> do
     putStr "║"
-    forM_ row $ \cell -> putStr [cell ^. cellContent]
+    forM_ (row ^. rowCells) $ \cell -> putStr [cell ^. cellContent]
     putStrLn "║"
 
   putStrLn $ '╚' : replicate (scr ^. vtyWidth) '═' ++ "╝"
+
+renderDiff :: VTY -> VTY -> IO ()
+renderDiff = undefined

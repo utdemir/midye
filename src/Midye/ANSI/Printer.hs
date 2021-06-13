@@ -10,6 +10,9 @@ module Midye.ANSI.Printer
     cellStyle,
     cellContent,
     cellTouched,
+    Row (..),
+    rowCells,
+    rowEnd,
     VTY (..),
     vtyScreen,
     vtyCursor,
@@ -48,15 +51,29 @@ untouchedCell = Cell initStyle ' ' False
 
 Optics.TH.makeLenses ''Cell
 
+data RowEnd
+  = RowEndWrapped
+  | RowEndNewline Int
+  | RowEndNo
+  deriving stock (Eq, Show)
+
+data Row = Row
+  { _rowCells :: Seq Cell,
+    _rowEnd :: RowEnd
+  }
+
+Optics.TH.makeLenses ''Row
+
 -- TODO:
 -- We probably will need to store whether a line ends with newline or not to
 -- handle resizes.
 data VTY = VTY
-  { _vtyScreen :: Seq (Seq Cell),
+  { _vtyScreen :: Seq Row,
     _vtyCursor :: (Int, Int),
     _vtyState :: Style,
     _vtySize :: (Int, Int)
   }
+
 {-
 * 'vtySize' is of shape (height, width).
 * 'vtyScreen' is a dense matrix with size 'vtySize', row-major order.
@@ -73,7 +90,7 @@ initVTY size@(height, width) =
     { _vtyState = initStyle,
       _vtyCursor = (0, 0),
       _vtySize = size,
-      _vtyScreen = Seq.replicate height (Seq.replicate width untouchedCell)
+      _vtyScreen = Seq.replicate height (Row (Seq.replicate width untouchedCell) RowEndNo)
     }
 
 vtyHeight, vtyWidth :: Lens' VTY Int
@@ -84,17 +101,26 @@ vtyCursorRow, vtyCursorCol :: Lens' VTY Int
 vtyCursorRow = vtyCursor % _1
 vtyCursorCol = vtyCursor % _2
 
+vtyCurrentRow :: Lens' VTY Row
+vtyCurrentRow =
+  lens
+    ( \vty ->
+        vty ^? vtyScreen % ix (vty ^. vtyCursorRow)
+          & fromMaybe (error "invariant violation: cursor out of bounds.")
+    )
+    (\vty row -> vty & vtyScreen % ix (vty ^. vtyCursorRow) .~ row)
+
 vtyCurrentCell :: Lens' VTY Cell
 vtyCurrentCell =
   lens
     ( \vty ->
         let (row, col) = vty ^. vtyCursor
-         in vty ^? vtyScreen % ix row % ix col
+         in vty ^? vtyScreen % ix row % rowCells % ix col
               & fromMaybe (error "invariant violation: cursor out of bounds.")
     )
     ( \vty cell ->
         let (row, col) = vty ^. vtyCursor
-         in vty & vtyScreen % ix row % ix col .~ cell
+         in vty & vtyScreen % ix row % rowCells % ix col .~ cell
     )
 
 cursorAtTheRightEnd :: VTY -> Bool
@@ -109,7 +135,7 @@ vtyAddRow vty =
     -- drop the first row
     & vtyScreen %~ Seq.drop 1
     -- and a new row
-    & vtyScreen %~ (Seq.|> Seq.replicate (vty ^. vtyWidth) untouchedCell)
+    & vtyScreen %~ (Seq.|> Row (Seq.replicate (vty ^. vtyWidth) untouchedCell) RowEndNo)
     -- make sure that cursor does not move
     & vtyCursorRow %~ pred
 
@@ -123,45 +149,61 @@ run (TBPlain c) vty =
     shiftIfNecessary v =
       case (cursorAtTheRightEnd v, cursorAtTheBottom v) of
         (False, _) -> v
-        (True, False) -> v & vtyCursorCol .~ 0 & vtyCursorRow %~ succ
-        (True, True) -> v & vtyAddRow & vtyCursorCol .~ 0 & vtyCursorRow %~ succ
+        (True, False) ->
+          v
+            & vtyCurrentRow % rowEnd .~ RowEndWrapped
+            & vtyCursorCol .~ 0
+            & vtyCursorRow %~ succ
+        (True, True) ->
+          v
+            & vtyCurrentRow % rowEnd .~ RowEndWrapped
+            & vtyAddRow
+            & vtyCursorCol .~ 0
+            & vtyCursorRow %~ succ
 run (TBSpecial TS_CR) vty =
   vty
     & vtyCursorCol .~ 0
 run (TBSpecial TS_LF) vty =
-  if not (cursorAtTheBottom vty)
-    then
-      vty
-        & vtyCursorRow %~ succ
-        & vtyCursorCol .~ 0
-    else
-      vty
-        & vtyAddRow
-        & vtyCursorCol .~ 0
-        & vtyCursorRow %~ succ
+  vty
+    & (if cursorAtTheBottom vty then vtyAddRow else id)
+    & vtyCurrentRow % rowEnd %~ (\x -> if x == RowEndNo then RowEndNewline (vty ^. vtyCursorCol) else x)
+    & vtyCursorRow %~ succ
+    & vtyCursorCol .~ 0
 run (TBSpecial TS_HT) vty =
   -- horizontal tab behaviour:
-  -- * (tmux) it moves the cursor forward to the next tabstop (every 8th column).
+  --   * (tmux) it moves the cursor forward to the next tabstop (every 8th column).
   -- however, if the cursor is at the rightmost visible column, or the rightmost
   -- column, it doesn't move.
-  -- * on some terminals (kitty), when the cursor is on the rightmost (invisible)
+  --   * on some terminals (kitty), when the cursor is on the rightmost (invisible)
   -- column, a horizontal tab moves the cursor back to the rightmost visible column.
   if vty ^. vtyCursorCol >= vty ^. vtyWidth - 1
-  then vty
-  else
-    let tabstops = [0, 8 .. vty ^. vtyWidth - 1]
-     in vty & vtyCursorCol
-          %~ ( \curr ->
-                 find (> curr) tabstops -- find the next tabstop
-                   & fromMaybe (vty ^. vtyWidth - 1) -- or the end column
-             )
-
+    then vty
+    else
+      let tabstops = [0, 8 .. vty ^. vtyWidth - 1]
+       in vty & vtyCursorCol
+            %~ ( \curr ->
+                   find (> curr) tabstops -- find the next tabstop
+                     & fromMaybe (vty ^. vtyWidth - 1) -- or the end column
+               )
 run (TBSpecial TS_BEL) vty =
   -- bell
   vty
-run (TBSpecial TS_BS) vty =
+run (TBSpecial TS_BS) vty
   -- backspace
-  vty
+  | vty ^. vtyCursorCol == vty ^. vtyWidth = vty & vtyCursorCol %~ pred
+  | vty ^. vtyCursorCol == 0 =
+    if vty ^. vtyCursorRow == 0
+      then vty
+      else
+        let previousRowEnd = vty & vtyCursorRow %~ pred & view (vtyCurrentRow % rowEnd)
+         in case previousRowEnd of
+              RowEndWrapped ->
+                vty
+                  & vtyCursorRow %~ pred
+                  & vtyCursorCol .~ (vty ^. vtyWidth - 1)
+              _ ->
+                vty
+  | otherwise = vty & vtyCursorCol %~ pred
 run (TBSpecial TS_SO) vty =
   -- activates the G1 character set
   vty
@@ -213,21 +255,47 @@ run (TBSpecial (TS_DECCKM _set)) vty =
 run (TBSpecial (TS_DECTCEM _set)) vty =
   -- show cursor
   vty
-run (TBSpecial (TS_CUP _params)) vty =
+run (TBSpecial (TS_CUP params)) vty =
   -- cursor position
-  vty
-run (TBSpecial (TS_CUU _params)) vty =
+  case params of
+    [row, col] ->
+      vty
+        & vtyCursorRow .~ clampRow vty (row - 1)
+        & vtyCursorCol .~ clampCol vty (col - 1)
+    _ -> vty
+run (TBSpecial (TS_CUU params)) vty =
   -- cursor up
-  vty
-run (TBSpecial (TS_CUD _params)) vty =
+  case params of
+    [count] ->
+      vty
+        & vtyCursorRow %~ clampRow vty . subtract count
+        -- When the cursor is at the (rightmost) invisible column,
+        -- CUU moves it one col back to the visible column. This
+        -- applies to CUD, CUF, and CUB too.
+        & vtyCursorCol %~ clampCol vty
+    _ -> vty
+run (TBSpecial (TS_CUD params)) vty =
   -- cursor down
-  vty
-run (TBSpecial (TS_CUF _params)) vty =
+  case params of
+    [count] ->
+      vty
+        & vtyCursorRow %~ clampRow vty . (+ count)
+        & vtyCursorCol %~ clampCol vty
+    _ -> vty
+run (TBSpecial (TS_CUF params)) vty =
   -- cursor forward
-  vty
-run (TBSpecial (TS_CUB _params)) vty =
+  case params of
+    [count] ->
+      vty
+        & vtyCursorCol %~ clampCol vty . (+ count)
+    _ -> vty
+run (TBSpecial (TS_CUB params)) vty =
   -- cursor backward
-  vty
+  case params of
+    [count] ->
+      vty
+        & vtyCursorCol %~ clampCol vty . subtract count
+    _ -> vty
 run (TBSpecial (TS_ED _params)) vty =
   -- erase in display.
   vty
@@ -242,3 +310,7 @@ run (TBSpecial (TS_BracketedPasteMode _params)) vty =
   vty
 run (TBSpecial (TSUnknown _)) vty =
   vty
+
+clampRow, clampCol :: VTY -> Int -> Int
+clampRow vty i = 0 `max` i `min` (vty ^. vtyHeight - 1)
+clampCol vty i = 0 `max` i `min` (vty ^. vtyWidth - 1)

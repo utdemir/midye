@@ -8,17 +8,17 @@ let
 
   myHaskellPackages = pkgs.haskell.packages.${compiler}.override {
     overrides = hself: hsuper: {
-      "midye" =
+      midye =
         hself.callCabal2nix
           "midye"
           (gitignore ./.)
           { };
-      "streaming-with" =
+      streaming-with =
         pkgs.haskell.lib.doJailbreak hsuper."streaming-with";
-      "optics" = hself.optics_0_4;
-      "optics-core" = hself.optics-core_0_4;
-      "optics-extra" = hself.optics-extra_0_4;
-      "optics-th" = hself.optics-th_0_4;
+      optics = hself.optics_0_4;
+      optics-core = hself.optics-core_0_4;
+      optics-extra = hself.optics-extra_0_4;
+      optics-th = hself.optics-th_0_4;
     };
   };
 
@@ -33,6 +33,7 @@ let
       pkgs.haskellPackages.ormolu
       pkgs.niv
       pkgs.nixpkgs-fmt
+      pkgs.z3
     ];
     withHoogle = false;
     shellHook = ''
