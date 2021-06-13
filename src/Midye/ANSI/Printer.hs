@@ -26,80 +26,13 @@ where
 
 import "this" Data.Color
 import Data.Sequence qualified as Seq
-import "this" Midye.ANSI.Parser (TermBytes (..), TermSpecial (..))
-import "optics-th" Optics.TH qualified
-
-data Style = Style
-  { _styleUnderlined :: Bool,
-    _styleBold :: Bool,
-    _styleForegroundColor :: Color
-  }
-
-Optics.TH.makeLenses ''Style
+import "this" Midye.ANSI.Types
 
 initStyle :: Style
 initStyle = Style False False white
 
-data Cell = Cell
-  { _cellStyle :: Style,
-    _cellContent :: Char,
-    _cellTouched :: Bool
-  }
-
 untouchedCell :: Cell
 untouchedCell = Cell initStyle ' ' False
-
-Optics.TH.makeLenses ''Cell
-
-data RowEnd
-  = RowEndWrapped
-  | RowEndNewline Int
-  | RowEndNo
-  deriving stock (Eq, Show)
-
-data Row = Row
-  { _rowCells :: Seq Cell,
-    _rowEnd :: RowEnd
-  }
-
-Optics.TH.makeLenses ''Row
-
--- TODO:
--- We probably will need to store whether a line ends with newline or not to
--- handle resizes.
-data VTY = VTY
-  { _vtyScreen :: Seq Row,
-    _vtyCursor :: (Int, Int),
-    _vtyState :: Style,
-    _vtySize :: (Int, Int)
-  }
-
-{-
-* 'vtySize' is of shape (height, width).
-* 'vtyScreen' is a dense matrix with size 'vtySize', row-major order.
-* 'vtyCursor' is of shape (row, col). The row is always smaller than the height, however
-  col can be smaller or equal to the width (when col == width, the cursor is not visible
-  and there is no corresponding cell on 'vtyScreen').
--}
-
-Optics.TH.makeLenses ''VTY
-
-initVTY :: (Int, Int) -> VTY
-initVTY size@(height, width) =
-  VTY
-    { _vtyState = initStyle,
-      _vtyCursor = (0, 0),
-      _vtySize = size,
-      _vtyScreen = Seq.replicate height (Row (Seq.replicate width untouchedCell) RowEndNo)
-    }
-
-vtyHeight, vtyWidth :: Lens' VTY Int
-vtyHeight = vtySize % _1
-vtyWidth = vtySize % _2
-
-vtyCursorRow, vtyCursorCol :: Lens' VTY Int
-vtyCursorRow = vtyCursor % _1
-vtyCursorCol = vtyCursor % _2
 
 vtyCurrentRow :: Lens' VTY Row
 vtyCurrentRow =
@@ -138,6 +71,15 @@ vtyAddRow vty =
     & vtyScreen %~ (Seq.|> Row (Seq.replicate (vty ^. vtyWidth) untouchedCell) RowEndNo)
     -- make sure that cursor does not move
     & vtyCursorRow %~ pred
+
+initVTY :: (Int, Int) -> VTY
+initVTY size@(height, width) =
+  VTY
+    { _vtyState = initStyle,
+      _vtyCursor = (0, 0),
+      _vtySize = size,
+      _vtyScreen = Seq.replicate height (Row (Seq.replicate width untouchedCell) RowEndNo)
+    }
 
 run :: TermBytes -> VTY -> VTY
 run (TBPlain c) vty =

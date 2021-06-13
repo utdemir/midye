@@ -3,6 +3,7 @@ module Tests.Midye.ANSI.Parser where
 import "resourcet" Control.Monad.Trans.Resource
 import "text" Data.Text qualified as Text
 import "this" Midye.ANSI.Parser qualified as Parser
+import "this" Midye.ANSI.Types
 import "streaming-bytestring" Streaming.ByteString qualified as StreamingBS
 import "streaming" Streaming.Prelude qualified as Streaming
 import "filepath" System.FilePath (takeBaseName)
@@ -27,11 +28,11 @@ test_golden = do
         let retFile = ansiFile ++ ".out"
     ]
   where
-    pp :: [Parser.TermBytes] -> LByteString
+    pp :: [TermBytes] -> LByteString
     pp [] = "\n"
-    pp (Parser.TBPlain i : Parser.TBPlain j : xs) =
-      encodeUtf8 (Text.singleton i) <> pp (Parser.TBPlain j : xs)
-    pp (Parser.TBPlain i : xs) =
+    pp (TBPlain i : TBPlain j : xs) =
+      encodeUtf8 (Text.singleton i) <> pp (TBPlain j : xs)
+    pp (TBPlain i : xs) =
       encodeUtf8 (Text.singleton i) <> "\n" <> pp xs
-    pp (Parser.TBSpecial i : xs) =
+    pp (TBSpecial i : xs) =
       encodeUtf8 (show @Text i) <> "\n" <> pp xs

@@ -45,6 +45,7 @@ common common-options
                       TypeFamilies
   other-modules:      Midye.ANSI.Parser
                       Midye.ANSI.Printer
+                      Midye.ANSI.Types
                       Data.Color
                       Streaming.Attoparsec
                       Data.Attoparsec.ByteString.Extra

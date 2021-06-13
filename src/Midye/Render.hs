@@ -1,6 +1,6 @@
 module Midye.Render where
 
-import Midye.ANSI.Printer
+import Midye.ANSI.Types
 
 render :: VTY -> IO ()
 render scr = do
@@ -12,6 +12,3 @@ render scr = do
     putStrLn "║"
 
   putStrLn $ '╚' : replicate (scr ^. vtyWidth) '═' ++ "╝"
-
-renderDiff :: VTY -> VTY -> IO ()
-renderDiff = undefined

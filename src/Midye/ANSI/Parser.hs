@@ -1,66 +1,15 @@
 module Midye.ANSI.Parser
-  ( TermBytes (..),
-    TermSpecial (..),
-    run,
+  ( run,
   )
 where
 
 import "attoparsec" Data.Attoparsec.Text (Parser)
 import "attoparsec" Data.Attoparsec.Text qualified as Attoparsec
+import "this" Midye.ANSI.Types
 import "streaming" Streaming (Of, Stream)
 import "this" Streaming.Attoparsec (parsed)
 import "streaming-bytestring" Streaming.ByteString qualified as StreamingBS
 import "this" Streaming.Text qualified
-
-data TermBytes
-  = TBPlain Char
-  | TBSpecial TermSpecial
-  deriving stock (Show, Eq)
-
-data TermSpecial
-  = -- control chars
-    TS_BEL
-  | TS_BS
-  | TS_HT
-  | TS_LF
-  | TS_CR
-  | TS_SO
-  | TS_SI
-  | TS_CAN
-  | TS_ESC
-  | TS_DEL
-  | TS_CSI
-  | -- Non CSI sequences
-    TS_RIS
-  | TS_IND
-  | TS_NEL
-  | TS_HTS
-  | TS_RI
-  | TS_DECPNM
-  | TS_DECPAM
-  | -- CSI sequences
-    TS_SGR [Int]
-  | TS_DECSTBM [Int]
-  | TS_DECCKM Bool
-  | TS_DECTCEM Bool
-  | TS_CUP [Int]
-  | TS_CUU [Int]
-  | TS_CUD [Int]
-  | TS_CUF [Int]
-  | TS_CUB [Int]
-  | TS_ED [Int]
-  | TS_EL [Int]
-  | TS_StartBlinkingCursor Bool
-  | TS_X11MouseReporting Bool
-  | TS_BracketedPasteMode Bool
-  | -- unknown
-    TSUnknown TSUnknown
-  deriving stock (Show, Eq)
-
-data TSUnknown
-  = TSUnknownCSISequence Bool Char [Int]
-  | TSUnknownDECSequence Integer Bool
-  deriving stock (Show, Eq)
 
 pTermSpecial :: Parser TermSpecial
 pTermSpecial = do
