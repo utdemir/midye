@@ -1,258 +1,52 @@
-{-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE UndecidableInstances #-}
+module Midye.ANSI.Printer where
 
-module Midye.ANSI.Printer
-  ( Style (..),
-    styleUnderlined,
-    styleBold,
-    styleForegroundColor,
-    Cell (..),
-    cellStyle,
-    cellContent,
-    cellTouched,
-    Row (..),
-    rowCells,
-    rowEnd,
-    VTY (..),
-    vtyScreen,
-    vtyCursor,
-    vtySize,
-    vtyWidth,
-    vtyHeight,
-    initVTY,
-    run,
-  )
-where
+{-
+import Midye.ANSI.Types
+import qualified Data.Text as Text
 
-import "this" Data.Color
-import Data.Sequence qualified as Seq
-import "this" Midye.ANSI.Types
-
-initStyle :: Style
-initStyle = Style False False white
-
-untouchedCell :: Cell
-untouchedCell = Cell initStyle ' ' False
-
-vtyCurrentRow :: Lens' VTY Row
-vtyCurrentRow =
-  lens
-    ( \vty ->
-        vty ^? vtyScreen % ix (vty ^. vtyCursorRow)
-          & fromMaybe (error "invariant violation: cursor out of bounds.")
-    )
-    (\vty row -> vty & vtyScreen % ix (vty ^. vtyCursorRow) .~ row)
-
-vtyCurrentCell :: Lens' VTY Cell
-vtyCurrentCell =
-  lens
-    ( \vty ->
-        let (row, col) = vty ^. vtyCursor
-         in vty ^? vtyScreen % ix row % rowCells % ix col
-              & fromMaybe (error "invariant violation: cursor out of bounds.")
-    )
-    ( \vty cell ->
-        let (row, col) = vty ^. vtyCursor
-         in vty & vtyScreen % ix row % rowCells % ix col .~ cell
-    )
-
-cursorAtTheRightEnd :: VTY -> Bool
-cursorAtTheRightEnd vty = vty ^. vtyCursorCol == vty ^. vtyWidth
-
-cursorAtTheBottom :: VTY -> Bool
-cursorAtTheBottom vty = vty ^. vtyCursorRow == vty ^. vtyHeight - 1
-
-vtyAddRow :: VTY -> VTY
-vtyAddRow vty =
-  vty
-    -- drop the first row
-    & vtyScreen %~ Seq.drop 1
-    -- and a new row
-    & vtyScreen %~ (Seq.|> Row (Seq.replicate (vty ^. vtyWidth) untouchedCell) RowEndNo)
-    -- make sure that cursor does not move
-    & vtyCursorRow %~ pred
-
-initVTY :: (Int, Int) -> VTY
-initVTY size@(height, width) =
-  VTY
-    { _vtyState = initStyle,
-      _vtyCursor = (0, 0),
-      _vtySize = size,
-      _vtyScreen = Seq.replicate height (Row (Seq.replicate width untouchedCell) RowEndNo)
-    }
-
-run :: TermBytes -> VTY -> VTY
-run (TBPlain c) vty =
-  vty
-    & shiftIfNecessary
-    & vtyCurrentCell .~ Cell (vty ^. vtyState) c True
-    & vtyCursorCol %~ succ
-  where
-    shiftIfNecessary v =
-      case (cursorAtTheRightEnd v, cursorAtTheBottom v) of
-        (False, _) -> v
-        (True, False) ->
-          v
-            & vtyCurrentRow % rowEnd .~ RowEndWrapped
-            & vtyCursorCol .~ 0
-            & vtyCursorRow %~ succ
-        (True, True) ->
-          v
-            & vtyCurrentRow % rowEnd .~ RowEndWrapped
-            & vtyAddRow
-            & vtyCursorCol .~ 0
-            & vtyCursorRow %~ succ
-run (TBSpecial TS_CR) vty =
-  vty
-    & vtyCursorCol .~ 0
-run (TBSpecial TS_LF) vty =
-  vty
-    & (if cursorAtTheBottom vty then vtyAddRow else id)
-    & vtyCurrentRow % rowEnd %~ (\x -> if x == RowEndNo then RowEndNewline (vty ^. vtyCursorCol) else x)
-    & vtyCursorRow %~ succ
-    & vtyCursorCol .~ 0
-run (TBSpecial TS_HT) vty =
-  -- horizontal tab behaviour:
-  --   * (tmux) it moves the cursor forward to the next tabstop (every 8th column).
-  -- however, if the cursor is at the rightmost visible column, or the rightmost
-  -- column, it doesn't move.
-  --   * on some terminals (kitty), when the cursor is on the rightmost (invisible)
-  -- column, a horizontal tab moves the cursor back to the rightmost visible column.
-  if vty ^. vtyCursorCol >= vty ^. vtyWidth - 1
-    then vty
-    else
-      let tabstops = [0, 8 .. vty ^. vtyWidth - 1]
-       in vty & vtyCursorCol
-            %~ ( \curr ->
-                   find (> curr) tabstops -- find the next tabstop
-                     & fromMaybe (vty ^. vtyWidth - 1) -- or the end column
-               )
-run (TBSpecial TS_BEL) vty =
-  -- bell
-  vty
-run (TBSpecial TS_BS) vty
-  -- backspace
-  | vty ^. vtyCursorCol == vty ^. vtyWidth = vty & vtyCursorCol %~ pred
-  | vty ^. vtyCursorCol == 0 =
-    if vty ^. vtyCursorRow == 0
-      then vty
-      else
-        let previousRowEnd = vty & vtyCursorRow %~ pred & view (vtyCurrentRow % rowEnd)
-         in case previousRowEnd of
-              RowEndWrapped ->
-                vty
-                  & vtyCursorRow %~ pred
-                  & vtyCursorCol .~ (vty ^. vtyWidth - 1)
-              _ ->
-                vty
-  | otherwise = vty & vtyCursorCol %~ pred
-run (TBSpecial TS_SO) vty =
-  -- activates the G1 character set
-  vty
-run (TBSpecial TS_SI) vty =
-  -- activates the G0 character set
-  vty
-run (TBSpecial TS_CAN) vty =
-  -- abort the escape sequence
-  vty
-run (TBSpecial TS_ESC) vty =
-  -- escape
-  vty
-run (TBSpecial TS_DEL) vty =
-  -- del
-  vty
-run (TBSpecial TS_CSI) vty =
-  -- control sequence indicator
-  vty
-run (TBSpecial TS_RIS) vty =
-  -- reset to initial state
-  vty
-run (TBSpecial TS_IND) vty =
-  -- linefeed. like newline, but keep column position
-  vty
-run (TBSpecial TS_NEL) vty =
-  -- like newline, but doesn't add a line
-  vty
-run (TBSpecial TS_HTS) vty =
-  -- character tabulation set. sets horizontal tab stop at the column
-  vty
-run (TBSpecial TS_RI) vty =
-  -- move up one line keeping column position
-  vty
-run (TBSpecial TS_DECPNM) vty =
-  -- set numeric keypad mode
-  vty
-run (TBSpecial TS_DECPAM) vty =
-  -- set application keypad mode
-  vty
-run (TBSpecial (TS_SGR _params)) vty =
-  -- set graphics rendition
-  vty
-run (TBSpecial (TS_DECSTBM _set)) vty =
-  -- set scrolling region
-  vty
-run (TBSpecial (TS_DECCKM _set)) vty =
-  -- application cursor keys
-  vty
-run (TBSpecial (TS_DECTCEM _set)) vty =
-  -- show cursor
-  vty
-run (TBSpecial (TS_CUP params)) vty =
-  -- cursor position
-  case params of
-    [row, col] ->
-      vty
-        & vtyCursorRow .~ clampRow vty (row - 1)
-        & vtyCursorCol .~ clampCol vty (col - 1)
-    _ -> vty
-run (TBSpecial (TS_CUU params)) vty =
-  -- cursor up
-  case params of
-    [count] ->
-      vty
-        & vtyCursorRow %~ clampRow vty . subtract count
-        -- When the cursor is at the (rightmost) invisible column,
-        -- CUU moves it one col back to the visible column. This
-        -- applies to CUD, CUF, and CUB too.
-        & vtyCursorCol %~ clampCol vty
-    _ -> vty
-run (TBSpecial (TS_CUD params)) vty =
-  -- cursor down
-  case params of
-    [count] ->
-      vty
-        & vtyCursorRow %~ clampRow vty . (+ count)
-        & vtyCursorCol %~ clampCol vty
-    _ -> vty
-run (TBSpecial (TS_CUF params)) vty =
-  -- cursor forward
-  case params of
-    [count] ->
-      vty
-        & vtyCursorCol %~ clampCol vty . (+ count)
-    _ -> vty
-run (TBSpecial (TS_CUB params)) vty =
-  -- cursor backward
-  case params of
-    [count] ->
-      vty
-        & vtyCursorCol %~ clampCol vty . subtract count
-    _ -> vty
-run (TBSpecial (TS_ED _params)) vty =
-  -- erase in display.
-  vty
-run (TBSpecial (TS_EL _params)) vty =
-  -- erase in line.
-  vty
-run (TBSpecial (TS_StartBlinkingCursor _params)) vty =
-  vty
-run (TBSpecial (TS_X11MouseReporting _params)) vty =
-  vty
-run (TBSpecial (TS_BracketedPasteMode _params)) vty =
-  vty
-run (TBSpecial (TSUnknown _)) vty =
-  vty
-
-clampRow, clampCol :: VTY -> Int -> Int
-clampRow vty i = 0 `max` i `min` (vty ^. vtyHeight - 1)
-clampCol vty i = 0 `max` i `min` (vty ^. vtyWidth - 1)
+showTB :: TermBytes -> Text
+showTB (TBPlain c) = Text.singleton c
+showTB (TBSpecial c) = case c of
+  TS_BEL -> s 0x07
+  TS_BS -> s 0x08
+  TS_HT -> s 0x09
+  TS_LF -> s 0x0A
+  TS_CR -> s 0x0D
+  TS_LS0 -> s 0x0A
+  TS_LS1 -> s 0x0F
+  TS_CAN -> s 0x18
+  TS_ESC -> s 0x1B
+  TS_DEL -> s 0x7F
+  TS_CSI -> s 0x9B
+  TS_RIS -> esc <> "c"
+  TS_IND -> esc <> "D"
+  TS_NEL -> undefined
+  TS_HTS -> esc <> ">"
+  TS_RI -> undefined
+  TS_DECPNM -> esc <> ">"
+  TS_DECPAM -> esc <> "="
+  (TS_SCS0 c2) -> esc <> "(" <> Text.singleton c2
+  (TS_SCS1 c2) -> esc <> ")" <> Text.singleton c2
+  (TS_SCS2 c2) -> esc <> "*" <> Text.singleton c2
+  (TS_SCS3 c2) -> esc <> "+" <> Text.singleton c2
+  (TS_SGR xs) -> esc <> "[" <> Text.intercalate ";" (map show xs) <> "m"
+  (TS_DECSTBM xs) -> esc <> "[" <> Text.intercalate ";" (map show xs) <> "r"
+  (TS_DECCKM b) -> _
+  (TS_DECTCEM b) -> _
+  (TS_CUP i i3) -> _
+  (TS_CUU i) -> _
+  (TS_CUD i) -> _
+  (TS_CUF i) -> _
+  (TS_CUB i) -> _
+  (TS_CHA i) -> _
+  (TS_LPA i) -> _
+  (TS_ED l_i) -> _
+  (TS_EL e) -> _
+  (TS_StartBlinkingCursor b) -> _
+  (TS_X11MouseReporting b) -> _
+  (TS_BracketedPasteMode b) -> _
+  (TSUnknown t) -> _
+ where
+  s = Text.singleton . chr
+  esc = Text.singleton (chr 0x1B)
+-}

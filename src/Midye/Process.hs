@@ -16,7 +16,7 @@ import "inline-c" Language.C.Inline qualified as C
 import "streaming-bytestring" Streaming.ByteString (ByteStream)
 import "streaming-bytestring" Streaming.ByteString qualified as StreamingBS
 import System.Exit (ExitCode (..))
-import System.IO (hClose, hSetBuffering, BufferMode (NoBuffering), hFlush)
+import System.IO (BufferMode (NoBuffering), hClose, hFlush, hSetBuffering)
 import "unix" System.Posix.IO (fdToHandle)
 import System.Posix.Types (Fd (..))
 import "process" System.Process qualified as Process

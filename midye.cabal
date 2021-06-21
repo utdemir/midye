@@ -25,6 +25,7 @@ common common-options
                       DeriveGeneric
                       DeriveFunctor
                       DerivingStrategies
+                      BlockArguments
                       DeriveAnyClass
                       FlexibleInstances
                       DeriveLift
@@ -45,14 +46,16 @@ common common-options
                       TypeFamilies
   other-modules:      Midye.ANSI.Parser
                       Midye.ANSI.Printer
+                      Midye.ANSI.Render
                       Midye.ANSI.Types
+                      Midye.ANSI.Widget
                       Data.Color
                       Streaming.Attoparsec
                       Data.Attoparsec.ByteString.Extra
+                      Midye.UI
                       Streaming.Text
                       Midye.Process
                       Midye.Main
-                      Midye.Render
                       Prelude
   build-depends:      base >=4.11 && < 5
                     , relude
@@ -102,8 +105,11 @@ test-suite midye-tests
   main-is:            Driver.hs
   other-modules:      Tests.Midye.ANSI.Parser
                     , Tests.Midye.ANSI
+                    , Tests.Midye.ANSI.Render
+                    , Tests.Midye.ANSI.Widget
                     , Tests.Streaming.Attoparsec
                     , Tests.Streaming.Text
+                    , Tests.Util
                     , TestArgs
   build-depends:      hedgehog
                     , tasty
@@ -114,4 +120,5 @@ test-suite midye-tests
                     , temporary
                     , HUnit
                     , base64-bytestring
+                    , string-interpolate
 

@@ -3,28 +3,18 @@
 module Tests.Midye.ANSI where
 
 import "bytestring" Data.ByteString qualified as ByteString
-import Data.List qualified
 import "hedgehog" Hedgehog
 import "hedgehog" Hedgehog.Gen qualified as Gen
 import "hedgehog" Hedgehog.Range qualified as Range
 import "this" Midye.ANSI.Parser qualified
-import "this" Midye.ANSI.Printer
-import Numeric (showHex)
+import "this" Midye.ANSI.Render
+import "this" Midye.ANSI.Types
 import "streaming-bytestring" Streaming.ByteString qualified as StreamingBS
 import "streaming" Streaming.Prelude qualified as Streaming
-import "filepath" System.FilePath ((</>))
-import System.IO.Temp (withSystemTempDirectory)
-import "process" System.Process
-import System.Timeout (timeout)
 import "tasty" Test.Tasty
 import "tasty-hedgehog" Test.Tasty.Hedgehog (testProperty)
 import "this" TestArgs
-
--- | Sanity check for tmuxCapture.
-hprop_tmuxCapture :: Property
-hprop_tmuxCapture = withTests 1 . property $ do
-  ret <- evalIO $ tmuxCapture (10, 20) "foobar"
-  ("foobar" ++ replicate 10 '\n') === stripTrailingSpaces ret
+import "this" Tests.Util
 
 test_tmuxRefProp :: [TestTree]
 test_tmuxRefProp =
@@ -108,42 +98,12 @@ tmuxRefUnit input = do
 
   let actual =
         Streaming.each parsed
-          & Streaming.fold (flip Midye.ANSI.Printer.run) (Midye.ANSI.Printer.initVTY size) id
+          & Streaming.fold (flip Midye.ANSI.Render.run) (Midye.ANSI.Render.initVTY size) id
           & runIdentity
           & Streaming.fst'
-          & view Midye.ANSI.Printer.vtyScreen
+          & view Midye.ANSI.Render.vtyScreen
           & fmap (map (view cellContent) . toList . view rowCells)
           & toList
           & concatMap (\i -> i ++ ['\n'])
 
   stripTrailingSpaces expected === stripTrailingSpaces actual
-
--- | Render the given bytestring in tmux, and return the screen contents
-tmuxCapture :: (Int, Int) -> ByteString -> IO String
-tmuxCapture (height, width) input = do
-  withSystemTempDirectory "midye-tests-tmux" $ \dir -> do
-    let tmuxArgs = ["-S", dir </> "tmux.sock", "-f", "/dev/null"]
-        callTmux args = callProcess "tmux" (tmuxArgs ++ args)
-        readTmux args = readProcess "tmux" (tmuxArgs ++ args) ""
-        encoded = hexify (ByteString.unpack input)
-    Just ret <- timeout 10_000_000 $ do
-      callTmux $
-        ["new-session", "-d", "-x", show width, "-y", show height]
-          ++ ["echo -ne '" ++ encoded ++ "'; tmux wait-for -S finished; sleep 5"]
-      callTmux ["wait-for", "finished"]
-      out <- readTmux ["capture-pane", "-p", "-N"]
-      callTmux ["kill-session"]
-      return out
-    return ret
-
-stripTrailingSpaces :: String -> String
-stripTrailingSpaces =
-  Data.List.unlines
-    . map (dropWhileEnd (== ' '))
-    . Data.List.lines
-  where
-    dropWhileEnd :: (a -> Bool) -> [a] -> [a]
-    dropWhileEnd p = reverse . dropWhile p . reverse
-
-hexify :: [Word8] -> String
-hexify = concatMap (\c -> "\\x" ++ showHex c "")

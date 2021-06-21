@@ -20,8 +20,8 @@ pTermSpecial = do
     0x09 -> return TS_HT
     0x0A -> return TS_LF
     0x0D -> return TS_CR
-    0x0E -> return TS_SO
-    0x0F -> return TS_SI
+    0x0E -> return TS_LS0
+    0x0F -> return TS_LS1
     0x18 -> return TS_CAN
     0x1B ->
       pTermSequenceNonCSI
@@ -41,6 +41,13 @@ pTermSequenceNonCSI = do
     '[' -> pTermSequenceCSI
     '>' -> return TS_DECPNM
     '=' -> return TS_DECPAM
+    '(' -> TS_SCS0 <$> Attoparsec.anyChar
+    ')' -> TS_SCS1 <$> Attoparsec.anyChar
+    '*' -> TS_SCS2 <$> Attoparsec.anyChar
+    '+' -> TS_SCS3 <$> Attoparsec.anyChar
+    '-' -> TS_SCS1 <$> Attoparsec.anyChar
+    '.' -> TS_SCS2 <$> Attoparsec.anyChar
+    '/' -> TS_SCS3 <$> Attoparsec.anyChar
     -- TODO: There're more
     _ -> fail "unknown non-csi sequence"
 
@@ -54,18 +61,23 @@ pTermSequenceCSI = decExtensions <|> actualCSI
       -- FIXME: should be at most 16 times. possible DOS without this limit.
       params <- (Attoparsec.decimal <|> return 0) `Attoparsec.sepBy` Attoparsec.char ';'
       action <- Attoparsec.anyChar
-      case (xtermExt, action) of
-        (False, 'm') -> return $ TS_SGR params
-        (False, 'r') -> return $ TS_DECSTBM params
-        (False, 'H') -> return $ TS_CUP params
-        (False, 'J') -> return $ TS_ED params
-        (False, 'K') -> return $ TS_EL params
-        (False, 'A') -> return $ TS_CUU params
-        (False, 'B') -> return $ TS_CUD params
-        (False, 'C') -> return $ TS_CUF params
-        (False, 'D') -> return $ TS_CUB params
+      case (xtermExt, action, params) of
+        (False, 'm', ps) -> return $ TS_SGR ps
+        (False, 'r', ps) -> return $ TS_DECSTBM ps
+        (False, 'H', [row]) -> return $ TS_CUP row 0
+        (False, 'H', [row, col]) -> return $ TS_CUP row col
+        (False, 'J', ps) -> return $ TS_ED ps
+        (False, 'K', [0]) -> return $ TS_EL EraseInLineToEnd
+        (False, 'K', [1]) -> return $ TS_EL EraseInLineToBeginning
+        (False, 'K', [2]) -> return $ TS_EL EraseInLineAll
+        (False, 'A', [c]) -> return $ TS_CUU c
+        (False, 'B', [c]) -> return $ TS_CUD c
+        (False, 'C', [c]) -> return $ TS_CUF c
+        (False, 'D', [c]) -> return $ TS_CUB c
+        (False, 'G', [col]) -> return $ TS_CHA col
+        (False, 'd', [row]) -> return $ TS_LPA row
         -- TODO: There're more
-        (ext, other) -> return $ TSUnknown (TSUnknownCSISequence ext other params)
+        (ext, other, ps) -> return $ TSUnknown (TSUnknownCSISequence ext other ps)
 
     decExtensions :: Parser TermSpecial
     decExtensions = do

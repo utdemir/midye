@@ -1,38 +1,26 @@
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE UndecidableInstances #-}
 
 module Midye.ANSI.Types
   ( TermBytes (..),
     TermSpecial (..),
     TSUnknown (..),
+    EraseInLineParam (..),
     Style (..),
     styleUnderlined,
     styleBold,
     styleForegroundColor,
+    initStyle,
     Cell (..),
     cellStyle,
     cellContent,
     cellTouched,
-    Row (..),
-    rowCells,
-    rowEnd,
-    RowEnd (..),
-    VTY (..),
-    vtyScreen,
-    vtyState,
-    vtyCursor,
-    vtySize,
-    vtyWidth,
-    vtyHeight,
-    vtyCursorRow,
-    vtyCursorCol,
+    untouchedCell,
+    touchedEmptyCell,
   )
 where
 
 import "this" Data.Color
 import "optics-th" Optics.TH qualified
-
--- * Parser
 
 data TermBytes
   = TBPlain Char
@@ -46,8 +34,8 @@ data TermSpecial
   | TS_HT
   | TS_LF
   | TS_CR
-  | TS_SO
-  | TS_SI
+  | TS_LS0
+  | TS_LS1
   | TS_CAN
   | TS_ESC
   | TS_DEL
@@ -60,18 +48,24 @@ data TermSpecial
   | TS_RI
   | TS_DECPNM
   | TS_DECPAM
+  | TS_SCS0 Char
+  | TS_SCS1 Char
+  | TS_SCS2 Char
+  | TS_SCS3 Char
   | -- CSI sequences
     TS_SGR [Int]
   | TS_DECSTBM [Int]
   | TS_DECCKM Bool
   | TS_DECTCEM Bool
-  | TS_CUP [Int]
-  | TS_CUU [Int]
-  | TS_CUD [Int]
-  | TS_CUF [Int]
-  | TS_CUB [Int]
+  | TS_CUP Int Int
+  | TS_CUU Int
+  | TS_CUD Int
+  | TS_CUF Int
+  | TS_CUB Int
+  | TS_CHA Int
+  | TS_LPA Int
   | TS_ED [Int]
-  | TS_EL [Int]
+  | TS_EL EraseInLineParam
   | TS_StartBlinkingCursor Bool
   | TS_X11MouseReporting Bool
   | TS_BracketedPasteMode Bool
@@ -79,18 +73,25 @@ data TermSpecial
     TSUnknown TSUnknown
   deriving stock (Show, Eq)
 
+data EraseInLineParam
+  = EraseInLineToBeginning
+  | EraseInLineToEnd
+  | EraseInLineAll
+  deriving stock (Show, Eq)
+
 data TSUnknown
   = TSUnknownCSISequence Bool Char [Int]
   | TSUnknownDECSequence Integer Bool
   deriving stock (Show, Eq)
 
--- * Printer
+-- * Rendering utilities
 
 data Style = Style
   { _styleUnderlined :: Bool,
     _styleBold :: Bool,
     _styleForegroundColor :: Color
   }
+  deriving stock (Eq, Show)
 
 Optics.TH.makeLenses ''Style
 
@@ -99,46 +100,15 @@ data Cell = Cell
     _cellContent :: Char,
     _cellTouched :: Bool
   }
+  deriving stock (Eq, Show)
 
 Optics.TH.makeLenses ''Cell
 
-data RowEnd
-  = RowEndWrapped
-  | RowEndNewline Int
-  | RowEndNo
-  deriving stock (Eq, Show)
+initStyle :: Style
+initStyle = Style False False white
 
-data Row = Row
-  { _rowCells :: Seq Cell,
-    _rowEnd :: RowEnd
-  }
+untouchedCell :: Cell
+untouchedCell = Cell initStyle ' ' False
 
-Optics.TH.makeLenses ''Row
-
--- TODO:
--- We probably will need to store whether a line ends with newline or not to
--- handle resizes.
-data VTY = VTY
-  { _vtyScreen :: Seq Row,
-    _vtyCursor :: (Int, Int),
-    _vtyState :: Style,
-    _vtySize :: (Int, Int)
-  }
-
-{-
-* 'vtySize' is of shape (height, width).
-* 'vtyScreen' is a dense matrix with size 'vtySize', row-major order.
-* 'vtyCursor' is of shape (row, col). The row is always smaller than the height, however
-  col can be smaller or equal to the width (when col == width, the cursor is not visible
-  and there is no corresponding cell on 'vtyScreen').
--}
-
-Optics.TH.makeLenses ''VTY
-
-vtyHeight, vtyWidth :: Lens' VTY Int
-vtyHeight = vtySize % _1
-vtyWidth = vtySize % _2
-
-vtyCursorRow, vtyCursorCol :: Lens' VTY Int
-vtyCursorRow = vtyCursor % _1
-vtyCursorCol = vtyCursor % _2
+touchedEmptyCell :: Cell
+touchedEmptyCell = Cell initStyle ' ' False
